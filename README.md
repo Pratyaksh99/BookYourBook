@@ -2,10 +2,10 @@
 
 # Team Bond -  Group Members 
 
--> Angela Bansal - bansal34@purdue.edu
--> Dhruv Ramanujan - dramanu@purdue.edu
--> Kaushik Ramachandran - ramach10@purdue.edu
--> Pratyaksh Motwani - pmotwani@purdue.edu
+-> Angela Bansal - bansal34@purdue.edu <br />
+-> Dhruv Ramanujan - dramanu@purdue.edu <br />
+-> Kaushik Ramachandran - ramach10@purdue.edu <br />
+-> Pratyaksh Motwani - pmotwani@purdue.edu <br />
 
 
 # Project Description
