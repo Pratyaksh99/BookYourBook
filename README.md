@@ -14,9 +14,9 @@ Book Your Book is a service that allows students a centralised portal to exchang
 
 # Users on the Platform can do the following: 
 
--> Add listing for a book they would like to sell (Book is added to the common book listing page and available with the buy option)
--> Purchase/Rent a book from a seller through the common book listing page (List of books provided by sellers and the rent duration if applicable)
--> Add a listing for the book they would like to rent  out (Book is added to the common listing page with renting option)
+-> Add listing for a book they would like to sell (Book is added to the common book listing page and available with the buy option) 
+-> Purchase/Rent a book from a seller through the common book listing page (List of books provided by sellers and the rent duration if applicable) 
+-> Add a listing for the book they would like to rent  out (Book is added to the common listing page with renting option) 
 
 # Database Items
 
