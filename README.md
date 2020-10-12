@@ -22,12 +22,12 @@ Book Your Book is a service that allows students a centralised portal to exchang
 
 According to the current project planning, we plan to have the following tables and specified attributes as part of our database infrastructure:
 
--> Buyers(buyer_id, name, email)
--> Sellers(seller_id, name, email)
--> Courses(course_id, course_name)
--> Books(isbn, book_name, course_id, seller_id, price, quantity)
--> Purchases(purchase_id, isbn, buyer_id, seller_id, date, price)
--> Rentals(rental_id, isbn, buyer_id, seller_id, date, time_period, price)
+-> Buyers(buyer_id, name, email) <br />
+-> Sellers(seller_id, name, email) <br />
+-> Courses(course_id, course_name) <br />
+-> Books(isbn, book_name, course_id, seller_id, price, quantity) <br />
+-> Purchases(purchase_id, isbn, buyer_id, seller_id, date, price) <br />
+-> Rentals(rental_id, isbn, buyer_id, seller_id, date, time_period, price) <br />
 
 The above tables will support add, edit and delete operations and our project would require additional implementation of complex queries to successfully record purchase and rental transactions.
 
