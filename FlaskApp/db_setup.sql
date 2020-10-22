@@ -5,7 +5,6 @@ CREATE TABLE IF NOT EXISTS `BookYourBook`.`Users` (
   user_id INTEGER UNIQUE AUTO_INCREMENT,
   user_name VARCHAR(100) NULL,
   user_email VARCHAR(100) NULL,
-  user_username VARCHAR(45) NULL,
   user_password VARCHAR(45) NULL,
   PRIMARY KEY (user_id)
 
