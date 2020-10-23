@@ -1,22 +1,147 @@
-body {
-    padding-top: 40px;
-    padding-bottom: 40px;
+* {
+    overflow-x: hidden;
+    padding: 0px !important;
+    margin: 0px !important;
   }
-   
-  .form-signin {
-    max-width: 330px;
-    padding: 15px;
-    margin: 0 auto;
-  }
-  .form-signin .form-signin-heading,
-  .form-signin .checkbox {
-    margin-bottom: 10px;
-  }
-  .form-signin .checkbox {
-    font-weight: normal;
-  }
-  .form-signin .form-control {
+  .v13_4 {
+    width: 100%;
+    height: 1024px;
+    background: rgba(255,255,255,1);
+    opacity: 1;
     position: relative;
+    top: 0px;
+    left: 0px;
+    overflow: hidden;
+  }
+  .v13_5 {
+    width: 219px;
+    height: 76px;
+    background: rgba(255,255,255,1);
+    opacity: 1;
+    position: absolute;
+    top: 55px;
+    left: 70px;
+    overflow: hidden;
+  }
+  .v13_6 {
+    width: 219px;
+    height: 76px;
+    background: rgba(101,188,151,1);
+    opacity: 1;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    border-top-left-radius: 59px;
+    border-top-right-radius: 59px;
+    border-bottom-left-radius: 59px;
+    border-bottom-right-radius: 59px;
+    overflow: hidden;
+  }
+  .v13_7 {
+    width: 80px;
+    color: rgba(255,255,255,1);
+    position: absolute;
+    top: 16px;
+    left: 70px;
+    font-family: Roboto;
+    font-weight: Regular;
+    font-size: 36px;
+    opacity: 1;
+    text-align: left;
+  }
+  .v13_8 {
+    width: 100%;
+    color: rgba(101,188,151,1);
+    position: absolute;
+    top: 154px;
+    left: 202px;
+    font-family: Roboto;
+    font-weight: Bold;
+    font-size: 144px;
+    opacity: 1;
+    text-align: left;
+  }
+  .v14_0 {
+    width: 361px;
+    height: 216px;
+    background: url("../images/v14_0.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    position: absolute;
+    top: 414px;
+    left: 494px;
+    overflow: hidden;
+  }
+  .v14_12 {
+    width: 361px;
+    height: 72px;
+    background: rgba(229,229,229,1);
+    opacity: 1;
+    position: absolute;
+    top: 144px;
+    left: 0px;
+    overflow: hidden;
+  }
+  .v14_13 {
+    width: 358px;
+    color: url("../images/v14_13.png");
+    position: static;
+    top: 0px;
+    left: 3px;
+    font-family: Roboto;
+    font-weight: Regular;
+    font-size: 24px;
+    opacity: 1;
+    text-align: left;
+  }
+  .v14_4 {
+    width: 361px;
+    height: 72px;
+    background: rgba(229,229,229,1);
+    opacity: 1;
+    position: absolute;
+    top: 72px;
+    left: 0px;
+    overflow: hidden;
+  }
+  .v14_5 {
+    width: 358px;
+    color: url("../images/v14_5.png");
+    position: static;
+    top: 0px;
+    left: 3px;
+    font-family: Roboto;
+    font-weight: Regular;
+    font-size: 24px;
+    opacity: 1;
+    text-align: left;
+  }
+  .v13_10 {
+    width: 361px;
+    height: 72px;
+    background: rgba(229,229,229,1);
+    opacity: 1;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    overflow: hidden;
+  }
+  .v13_11 {
+    width: 358px;
+    color: url("../images/v13_11.png");
+    position: static;
+    top: 0px;
+    left: 3px;
+    font-family: Roboto;
+    font-weight: Regular;
+    font-size: 24px;
+    opacity: 1;
+    text-align: left;
+  }
+  .form-signin {
+    position: static;
     height: auto;
     -webkit-box-sizing: border-box;
        -moz-box-sizing: border-box;
@@ -24,16 +149,33 @@ body {
     padding: 10px;
     font-size: 16px;
   }
-  .form-signin .form-control:focus {
-    z-index: 2;
+
+  .button-signup {
+    width: 219px;
+    height: 76px;
+    background: rgba(101,188,151,1);
+    opacity: 1;
+    position: absolute;
+    top: 700px;
+    left: 50%;
+    transform: translate(-90%, 0);
+    border-top-left-radius: 59px;
+    border-top-right-radius: 59px;
+    border-bottom-left-radius: 59px;
+    border-bottom-right-radius: 59px;
+    overflow: hidden;
   }
-  .form-signin input[type="email"] {
-    margin-bottom: -1px;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-  }
-  .form-signin input[type="password"] {
-    margin-bottom: 10px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
+  
+  .button-signup-text {
+    width: 150px;
+    color: rgba(255,255,255,1);
+    position: relative;
+    /* top: 16px;
+    left: 70px; */
+    font-family: Roboto;
+    font-weight: Regular;
+    font-size: 36px;
+    opacity: 1;
+    text-align: center;
+    margin: auto;
   }

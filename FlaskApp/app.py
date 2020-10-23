@@ -13,7 +13,7 @@ mysql.init_app(app)
 
 @app.route("/")
 def main():
-    return render_template('index.html')
+    return render_template('homepage.html')
 
 @app.route('/showSignUp')
 def showSignUp():
@@ -27,7 +27,13 @@ def signUp():
     _email = request.form['inputEmail']
     _password = request.form['inputPassword']
 
+@app.route('/showHomepageSignedIn')
+def showHomepageSignedIn():
+    return render_template('homepageSignedIn.html')
     
+@app.route('/showBookList')
+def showBookList():
+    return render_template('bookList.html')
     
 if __name__ == "__main__":
-    app.run()
+    app.run(host='0.0.0.0')
