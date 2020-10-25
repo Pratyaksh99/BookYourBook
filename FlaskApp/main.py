@@ -1,6 +1,35 @@
 from flask import Flask, render_template, request
+import pymysql
 
 app = Flask(__name__)
+
+# Google Cloud SQL 
+db_user = "root"
+db_password = "Team007"
+db_name = "BookYourBook"
+db_connection_name = "bookapp-final:us-central1:bookdatabase"
+
+# Connecting to DB
+def open_connection():
+
+    unix_socket = '/cloudsql/{}'.format(db_connection_name)
+    
+    conn = pymysql.connect(user=db_user, password=db_password,
+                            unix_socket=unix_socket, db=db_name,
+                            cursorclass=pymysql.cursors.DictCursor
+                            )
+
+    # try:
+    #     conn = pymysql.connect(user=db_user, password=db_password,
+    #                         unix_socket=unix_socket, db=db_name,
+    #                         cursorclass=pymysql.cursors.DictCursor
+    #                         )
+    # except pymysql.MySQLError as e:
+    #     print(e)
+
+    return conn
+
+my_conn = open_connection()
 
 @app.route("/")
 def main():
