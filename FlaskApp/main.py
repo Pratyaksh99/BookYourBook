@@ -47,7 +47,7 @@ def do_signUp():
     name = request.form['inputName']
     email = request.form['inputEmail']
     password = request.form['inputPassword']
-
+    print(name)
     connection = open_connection()
 
     with connection.cursor() as cursor:
@@ -67,7 +67,7 @@ def do_signUp():
 
     connection.close()
 
-    render_template('homepageSignedIn.html')
+    return render_template('homepageSignedIn.html')
 
 @app.route('/showHomepageSignedIn')
 def showHomepageSignedIn():
