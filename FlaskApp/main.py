@@ -60,7 +60,7 @@ def do_signUp():
     connection.commit()
 
     with connection.cursor() as cursor:
-        # Read a single record
+        
         cursor.execute('SELECT * FROM Users;')
         result = cursor.fetchall()
         print(result)
@@ -68,6 +68,36 @@ def do_signUp():
     connection.close()
 
     return render_template('homepageSignedIn.html')
+
+@app.route('/signIn',methods=['POST', 'GET'])
+def signIn(errorMessage="", requestTrigger=True):
+ 
+    # read the posted values from the UI
+    if (request.method == 'POST') and requestTrigger:
+        return do_signIn()
+    return render_template('signin.html', errorMessage=errorMessage) 
+
+
+def do_signIn():
+
+    email = request.form['inputEmail']
+    password = request.form['inputPassword']
+
+    connection = open_connection()
+
+    with connection.cursor() as cursor:
+        # Create a new record
+        sql = 'SELECT user_password FROM Users WHERE user_email=%s'
+        cursor.execute(sql, email)
+        result = cursor.fetchone()
+
+    connection.close()
+
+    if result['user_password'] == password:
+        return render_template('homepageSignedIn.html')
+    else:
+        return render_template('signin.html')
+
 
 @app.route('/showHomepageSignedIn')
 def showHomepageSignedIn():
