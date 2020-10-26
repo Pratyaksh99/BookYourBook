@@ -33,14 +33,17 @@ def open_connection():
 def main():
     return render_template('homepage.html')
 
-@app.route('/showSignUp')
-def showSignUp():
-    return render_template('signup.html')
-
 @app.route('/signUp',methods=['POST', 'GET'])
-def signUp():
+def signUp(errorMessage="", requestTrigger=True):
  
     # read the posted values from the UI
+    if (request.method == 'POST') and requestTrigger:
+        return do_signup()
+    return render_template('signup.html', errorMessage=errorMessage) 
+
+
+def doSignUp():
+
     name = request.form['inputName']
     email = request.form['inputEmail']
     password = request.form['inputPassword']
@@ -64,7 +67,7 @@ def signUp():
 
     connection.close()
 
-    showHomepageSignedIn()
+    render_template('homepageSignedIn.html')
 
 @app.route('/showHomepageSignedIn')
 def showHomepageSignedIn():
