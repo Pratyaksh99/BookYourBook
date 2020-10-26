@@ -17,7 +17,6 @@ def open_connection():
     conn = pymysql.connect(user=db_user, password=db_password,
                             unix_socket=unix_socket, db=db_name,
                             cursorclass=pymysql.cursors.DictCursor,
-                            host='127.0.0.1'
                             )
 
     # try:
@@ -30,8 +29,6 @@ def open_connection():
 
     return conn
 
-# my_conn = open_connection()
-
 @app.route("/")
 def main():
     return render_template('homepage.html')
@@ -40,7 +37,7 @@ def main():
 def showSignUp():
     return render_template('signup.html')
 
-@app.route('/signUp',methods=['POST'])
+@app.route('/signUp',methods=['GET', 'POST'])
 def signUp():
  
     # read the posted values from the UI
@@ -52,7 +49,7 @@ def signUp():
 
     with connection.cursor() as cursor:
         # Create a new record
-        sql = "INSERT INTO `users` (`user_name`, `user_email`, `user_password`) VALUES (%s, %s, %s)"
+        sql = "INSERT INTO `Users` (`user_name`, `user_email`, `user_password`) VALUES (%s, %s, %s)"
         cursor.execute(sql, (name, email, password))
 
     # connection is not autocommit by default. So you must commit to save
@@ -61,12 +58,12 @@ def signUp():
 
     with connection.cursor() as cursor:
         # Read a single record
-        sql = "SELECT `id`, `password` FROM `users` WHERE `email`=%s"
+        sql = "SELECT `id`, `password` FROM `Users` WHERE `email`=%s"
         cursor.execute(sql, (email,))
         result = cursor.fetchone()
         print(result)
 
-        connection.close()
+    connection.close()
 
     showHomepageSignedIn()
 
@@ -76,7 +73,19 @@ def showHomepageSignedIn():
     
 @app.route('/showBookList')
 def showBookList():
-    return render_template('bookList.html')
+
+    connection = open_connection()
+
+    with connection.cursor() as cursor:
+        
+        sql = "SELECT `*` FROM `Books`"
+        cursor.execute(sql)
+        result = cursor.fetchall()
+        print(result)
+
+    connection.close()
+
+    return render_template('bookList.html', allBooks=result)
     
 if __name__ == "__main__":
     app.run(host='127.0.0.1', port=8080, debug=True)
