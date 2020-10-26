@@ -38,11 +38,11 @@ def signUp(errorMessage="", requestTrigger=True):
  
     # read the posted values from the UI
     if (request.method == 'POST') and requestTrigger:
-        return do_signup()
+        return do_signUp()
     return render_template('signup.html', errorMessage=errorMessage) 
 
 
-def doSignUp():
+def do_signUp():
 
     name = request.form['inputName']
     email = request.form['inputEmail']
