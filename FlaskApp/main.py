@@ -37,7 +37,7 @@ def main():
 def showSignUp():
     return render_template('signup.html')
 
-@app.route('/signUp',methods=['GET', 'POST'])
+@app.route('/signUp',methods=['POST', 'GET'])
 def signUp():
  
     # read the posted values from the UI
@@ -49,7 +49,7 @@ def signUp():
 
     with connection.cursor() as cursor:
         # Create a new record
-        sql = "INSERT INTO `Users` (`user_name`, `user_email`, `user_password`) VALUES (%s, %s, %s)"
+        sql = 'INSERT INTO Users (user_name, user_email, user_password) VALUES (%s, %s, %s);'
         cursor.execute(sql, (name, email, password))
 
     # connection is not autocommit by default. So you must commit to save
@@ -58,9 +58,8 @@ def signUp():
 
     with connection.cursor() as cursor:
         # Read a single record
-        sql = "SELECT `id`, `password` FROM `Users` WHERE `email`=%s"
-        cursor.execute(sql, (email,))
-        result = cursor.fetchone()
+        cursor.execute('SELECT * FROM Users;')
+        result = cursor.fetchall()
         print(result)
 
     connection.close()
@@ -78,8 +77,7 @@ def showBookList():
 
     with connection.cursor() as cursor:
         
-        sql = "SELECT `*` FROM `Books`"
-        cursor.execute(sql)
+        cursor.execute('SELECT * FROM Books;')
         result = cursor.fetchall()
         print(result)
 
