@@ -143,7 +143,7 @@ def showBookList():
     rental_prices = []
     for i in range(lenBooks):
         book_names.append(result[i]["book_name"])
-        course_ids.append(result[i]["course_ids"])
+        course_ids.append(result[i]["course_id"])
         seller_ids.append(result[i]["seller_id"])
         purchase_prices.append(result[i]["purchase_price"])
         rental_prices.append(result[i]["rental_price"])
