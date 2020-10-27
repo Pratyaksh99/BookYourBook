@@ -116,7 +116,41 @@ def showBookList():
 
     connection.close()
 
-    return render_template('bookList.html', allBooks=result)
+    #Sample result list
+    # result = [{
+    #     "isbn": 123,
+    #     "book_name": "Book1",
+    #     "course_ids": "Course1",
+    #     "seller_id": "Seller1",
+    #     "purchase_price": 20,
+    #     "rental_price": 10,
+    #     },
+    #     {
+    #     "isbn": 444,
+    #     "book_name": "Book2",
+    #     "course_ids": "Course2",
+    #     "seller_id": "Seller2",
+    #     "purchase_price": 5,
+    #     "rental_price": 10,
+    #     }
+    # ]
+
+    lenBooks = len(result)
+    book_names = []
+    course_ids = []
+    seller_ids = []
+    purchase_prices = []
+    rental_prices = []
+    for i in range(lenBooks):
+        book_names.append(result[i]["book_name"])
+        course_ids.append(result[i]["course_ids"])
+        seller_ids.append(result[i]["seller_id"])
+        purchase_prices.append(result[i]["purchase_price"])
+        rental_prices.append(result[i]["rental_price"])
+        
+
+    return render_template('bookList.html', lenBooks=lenBooks, book_names=book_names, course_ids=course_ids, seller_ids=seller_ids, 
+    purchase_prices=purchase_prices, rental_prices=rental_prices)
     
 if __name__ == "__main__":
     app.run(host='127.0.0.1', port=8080, debug=True)
