@@ -93,10 +93,13 @@ def do_signIn():
 
     connection.close()
 
+    if result == null:
+        return signIn("User does not exist!", False)
+
     if result['user_password'] == password:
         return render_template('homepageSignedIn.html')
     else:
-        return render_template('signin.html')
+        return signIn("Invalid Password!", False)
 
 
 @app.route('/showHomepageSignedIn')
@@ -151,6 +154,37 @@ def showBookList():
 
     return render_template('bookList.html', lenBooks=lenBooks, book_names=book_names, course_ids=course_ids, seller_ids=seller_ids, 
     purchase_prices=purchase_prices, rental_prices=rental_prices)
+
+@app.route('/buy',methods=['POST'])
+def buy(errorMessage="", requestTrigger=True):
+ 
+    # read the posted values from the UI
+    if requestTrigger:
+        return do_buy()
+    return showBookList()
+
+# def do_buy():
+
+@app.route('/rent',methods=['POST'])
+def rent(errorMessage="", requestTrigger=True):
+ 
+    # read the posted values from the UI
+    if requestTrigger:
+        return do_rent()
+    return showBookList()
+
+# def do_rent():
+
+@app.route('/sell',methods=['POST'])
+def sell(errorMessage="", requestTrigger=True):
+ 
+    if requestTrigger:
+        return do_sell()
+    return showBookList()
+
+# def do_sell():
+
+
     
 if __name__ == "__main__":
     app.run(host='127.0.0.1', port=8080, debug=True)
