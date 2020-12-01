@@ -33,6 +33,9 @@ def open_connection():
 def main():
     return render_template('homepage.html')
 
+# Store the user id of the user in session
+global_userId = ""
+
 @app.route('/signUp',methods=['POST', 'GET'])
 def signUp(errorMessage="", requestTrigger=True):
  
@@ -67,7 +70,7 @@ def do_signUp():
 
     connection.close()
 
-    return render_template('homepageSignedIn.html')
+    return render_template('signin.html')
 
 @app.route('/signIn',methods=['POST', 'GET'])
 def signIn(errorMessage="", requestTrigger=True):
@@ -87,7 +90,7 @@ def do_signIn():
 
     with connection.cursor() as cursor:
         # Create a new record
-        sql = 'SELECT user_password FROM Users WHERE user_email=%s'
+        sql = 'SELECT user_id, user_password FROM Users WHERE user_email=%s'
         cursor.execute(sql, email)
         result = cursor.fetchone()
 
@@ -97,6 +100,7 @@ def do_signIn():
         return signIn("User does not exist!", False)
 
     if result['user_password'] == password:
+        global_userId = result['user_id']
         return render_template('homepageSignedIn.html')
     else:
         return signIn("Invalid Password!", False)
@@ -166,11 +170,45 @@ def buy(errorMessage="", requestTrigger=True):
     return showBookList()
 
 def do_buy():
+
     isbn = request.form['inputIsbn']
 
-    #Fetch necessary values
+    connection = open_connection()
 
-    #Insert into table
+    with connection.cursor() as cursor:
+
+        # Check if book exists
+        sql = 'SELECT * FROM Books WHERE isbn=%s'
+        cursor.execute(sql, isbn)
+        result = cursor.fetchone()
+
+        if result == None:
+
+            return buy("Book does not exist!", False)
+        
+        if result['quantity'] > 1:
+
+            # Insert into Purchases Table
+            sql = 'INSERT INTO Purchases (isbn, buyer_id, seller_id, purchase_date, purchase_price) VALUES (%d, %d, %d, %s, %d);'
+            cursor.execute(sql, (isbn, global_userId, result['seller_id'], DATE, result['purchase_price']))
+            
+            # Update the quantity in the Books Table
+            sql = 'UPDATE Books SET quantity = quantity - 1 WHERE isbn=%s'
+            cursor.execute(sql, isbn)
+
+        else:
+
+            # Insert into Purchases Table
+            sql = 'INSERT INTO Purchases (isbn, buyer_id, seller_id, purchase_date, purchase_price) VALUES (%d, %d, %d, %s, %d);'
+            cursor.execute(sql, (isbn, global_userId, result['seller_id'], DATE, result['purchase_price']))
+
+            # Deleet from the Books Table
+            sql = 'DELETE FROM Books SET quantity = quantity - 1 WHERE isbn=%s'
+            cursor.execute(sql, isbn)
+
+        cursor.commit()
+
+    connection.close()
 
     return render_template('homepageSignedIn.html')
 
@@ -184,12 +222,46 @@ def rent(errorMessage="", requestTrigger=True):
     return showBookList()
 
 def do_rent():
+
     isbn = request.form['inputIsbn']
     endDate = request.form['inputEndDate']
 
-    #Fetch necessary values
+    connection = open_connection()
 
-    #Insert into table
+    with connection.cursor() as cursor:
+
+        # Check if book exists
+        sql = 'SELECT * FROM Books WHERE isbn=%s'
+        cursor.execute(sql, isbn)
+        result = cursor.fetchone()
+
+        if result == None:
+
+            return buy("Book does not exist!", False)
+        
+        if result['quantity'] > 1:
+
+            # Insert into Rentals Table
+            sql = 'INSERT INTO Rentals (isbn, buyer_id, seller_id, rental_date, rented_period, rental_price) VALUES (%d, %d, %d, %s, %d, %d);'
+            cursor.execute(sql, (isbn, global_userId, result['seller_id'], DATE, DATE, result['rental_price']))
+            
+            # Update the quantity in the Books Table
+            sql = 'UPDATE Books SET quantity = quantity - 1 WHERE isbn=%s'
+            cursor.execute(sql, isbn)
+
+        else:
+
+            # Insert into Rentals Table
+            sql = 'INSERT INTO Rentals (isbn, buyer_id, seller_id, rental_date, rented_period, rental_price) VALUES (%d, %d, %d, %s, %d, %s);'
+            cursor.execute(sql, (isbn, global_userId, result['seller_id'], DATE, DATE, result['rental_price']))
+
+            # Delete from the Books Table
+            sql = 'DELETE FROM Books SET quantity = quantity - 1 WHERE isbn=%s'
+            cursor.execute(sql, isbn)
+
+        cursor.commit()
+
+    connection.close()
 
     return render_template('homepageSignedIn.html')
 
