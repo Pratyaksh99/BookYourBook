@@ -123,7 +123,7 @@ def showBookList():
     # result = [{
     #     "isbn": 123,
     #     "book_name": "Book1",
-    #     "course_ids": "Course1",
+    #     "course_id": "Course1",
     #     "seller_id": "Seller1",
     #     "purchase_price": 20,
     #     "rental_price": 10,
@@ -131,7 +131,7 @@ def showBookList():
     #     {
     #     "isbn": 444,
     #     "book_name": "Book2",
-    #     "course_ids": "Course2",
+    #     "course_id": "Course2",
     #     "seller_id": "Seller2",
     #     "purchase_price": 5,
     #     "rental_price": 10,
@@ -139,12 +139,14 @@ def showBookList():
     # ]
 
     lenBooks = len(result)
+    isbns = []
     book_names = []
     course_ids = []
     seller_ids = []
     purchase_prices = []
     rental_prices = []
     for i in range(lenBooks):
+        isbns.append(result[i]["isbn"])
         book_names.append(result[i]["book_name"])
         course_ids.append(result[i]["course_id"])
         seller_ids.append(result[i]["seller_id"])
@@ -152,32 +154,45 @@ def showBookList():
         rental_prices.append(result[i]["rental_price"])
         
 
-    return render_template('bookList.html', lenBooks=lenBooks, book_names=book_names, course_ids=course_ids, seller_ids=seller_ids, 
+    return render_template('bookList.html', lenBooks=lenBooks, isbns=isbns, book_names=book_names, course_ids=course_ids, seller_ids=seller_ids, 
     purchase_prices=purchase_prices, rental_prices=rental_prices)
-
-@app.route('/buy',methods=['POST'])
+    
+@app.route('/buy',methods=['POST', 'GET'])
 def buy(errorMessage="", requestTrigger=True):
  
     # read the posted values from the UI
-    if requestTrigger:
+    if (request.method == 'POST') and requestTrigger:
         return do_buy()
     return showBookList()
 
 def do_buy():
+    isbn = request.form['inputIsbn']
 
-    print("Buy a book!")
+    #Fetch necessary values
 
-@app.route('/rent',methods=['POST'])
+    #Insert into table
+
+    return render_template('homepageSignedIn.html')
+
+
+@app.route('/rent',methods=['POST', 'GET'])
 def rent(errorMessage="", requestTrigger=True):
  
     # read the posted values from the UI
-    if requestTrigger:
+    if (request.method == 'POST') and requestTrigger:
         return do_rent()
     return showBookList()
 
 def do_rent():
+    isbn = request.form['inputIsbn']
+    endDate = request.form['inputEndDate']
 
-    print("Rent a book")
+    #Fetch necessary values
+
+    #Insert into table
+
+    return render_template('homepageSignedIn.html')
+
 
 @app.route('/sell',methods=['POST'])
 def sell(errorMessage="", requestTrigger=True):

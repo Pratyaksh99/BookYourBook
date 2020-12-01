@@ -61,14 +61,14 @@
     opacity: 1;
     text-align: left;
   }
-  .v10_1 {
+  .book_list_headings {
     width: 100%;
     height: 72px;
     background: rgba(255,255,255,1);
     opacity: 1;
     position: relative;
     top: 0px;
-    left: 204px;
+    left: 150px;
     overflow: hidden;
   }
   .v11_0 {
@@ -124,7 +124,6 @@
   .v11_4 {
     width: 182px;
     height: 72px;
-    background: url("../images/v11_4.png");
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
@@ -149,7 +148,6 @@
   .v11_6 {
     width: 186px;
     height: 72px;
-    background: url("../images/v11_6.png");
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
@@ -157,6 +155,18 @@
     position: absolute;
     top: 0px;
     left: 847px;
+    overflow: hidden;
+  }
+  .book_list_isbn_header {
+    width: 186px;
+    height: 72px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    left: 1033px;
     overflow: hidden;
   }
   .v11_7 {
@@ -213,7 +223,8 @@
     width: 198px;
     color: rgba(0,0,0,1);
     position: absolute;
-    top: 0px;
+    top: 50%;
+    transform: translateY(-50%);
     left: 40px;
     font-family: Roboto;
     font-weight: Regular;
@@ -238,7 +249,8 @@
     width: 198px;
     color: rgba(0,0,0,1);
     position: absolute;
-    top: 0px;
+    top: 50%;
+    transform: translateY(-50%);
     left: 40px;
     font-family: Roboto;
     font-weight: Regular;
@@ -326,6 +338,31 @@
     opacity: 1;
     text-align: center;
   }
+  .book_list_isbn_box {
+    width: 186px;
+    height: 72px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    left: 1015px;
+    overflow: hidden;
+  }
+  .book_list_isbn {
+    width: 186px;
+    color: rgba(0,0,0,1);
+    position: absolute;
+    margin: auto;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: Roboto;
+    font-weight: Regular;
+    font-size: 24px;
+    opacity: 1;
+    text-align: center;
+  }
   .v11_19 {
     width: 189px;
     height: 72px;
@@ -343,7 +380,8 @@
     width: 149px;
     color: rgba(0,0,0,1);
     position: absolute;
-    top: 0px;
+    top: 50%;
+    transform: translateY(-50%);
     left: 40px;
     font-family: Roboto;
     font-weight: Regular;
@@ -351,13 +389,13 @@
     opacity: 1;
     text-align: left;
   }
-  .book_row {
+  .book_list_row {
     width: 100%;
     height: 72px;
     background: rgba(228,228,228,1);
     opacity: 1;
     position: relative;
-    left: 204px;
+    left: 100px;
     overflow: hidden;
   }
   .v11_22 {
@@ -516,9 +554,111 @@
     text-align: left;
   }
 
-  .book_table {
+  .book_list_table {
     position: absolute;
-    top: 300px;
+    top: 600px;
     width: 100%;
   }
+
+  .book_list_buy_bubble {
+    width: 219px;
+    height: 76px;
+    background: rgba(64,154,116,1);
+    opacity: 1;
+    position: absolute;
+    top: 337px;
+    left: 110px;
+    border-top-left-radius: 59px;
+    border-top-right-radius: 59px;
+    border-bottom-left-radius: 59px;
+    border-bottom-right-radius: 59px;
+    overflow: hidden;
+  }
+
+  .book_list_buy_text {
+    width: 60px;
+    color: rgba(255,255,255,1);
+    position: relative;
+    font-family: Roboto;
+    font-weight: Regular;
+    font-size: 36px;
+    opacity: 1;
+    text-align: left;
+  }
   
+  .book_list_rent_bubble {
+    width: 219px;
+    height: 76px;
+    background: rgba(64,154,116,1);
+    opacity: 1;
+    position: absolute;
+    top: 337px;
+    left: 1127px;
+    border-top-left-radius: 59px;
+    border-top-right-radius: 59px;
+    border-bottom-left-radius: 59px;
+    border-bottom-right-radius: 59px;
+    overflow: hidden;
+  }
+
+  .book_list_rent_text {
+    width: 58px;
+    color: rgba(255,255,255,1);
+    position: relative;
+    font-family: Roboto;
+    font-weight: Regular;
+    font-size: 36px;
+    opacity: 1;
+    text-align: left;
+  }
+
+  .book_list_buy_input_box {
+    width: 361px;
+    height: 216px;
+    background: url("../images/v14_0.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    position: absolute;
+    top: 450px;
+    left: 100px;
+    overflow: hidden;
+  }
+
+  .book_list_rent_input_box {
+    width: 361px;
+    height: 216px;
+    background: url("../images/v14_0.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    position: absolute;
+    top: 450px;
+    left: 1050px;
+    overflow: hidden;
+  }
+
+  .book_list_input_row {
+    width: 361px;
+    height: 72px;
+    background: rgba(229,229,229,1);
+    opacity: 1;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    overflow: hidden;
+  }
+  .book_list_input_text {
+    width: 358px;
+    color: url("../images/v13_11.png");
+    position: static;
+    top: 0px;
+    left: 20px;
+    font-family: Roboto;
+    font-weight: Regular;
+    font-size: 24px;
+    opacity: 1;
+    text-align: left;
+  }

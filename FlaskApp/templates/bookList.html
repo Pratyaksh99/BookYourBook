@@ -17,8 +17,8 @@
             
             <span class="v6_7">Book Your Book</span>
 			
-			<div class="book_table">
-				<div class="v10_1">
+			<div class="book_list_table">
+				<div class="book_list_headings">
 					<div class="v11_0">
 						<span class="v11_1">Title</span>
 					</div>
@@ -34,12 +34,15 @@
 					<div class="v11_6">
 						<span class="v11_7">Purchase</span>
 					</div>
+					<div class="book_list_isbn_header">
+						<span class="v11_7">ISBN</span>
+					</div>
 				</div>
 
 				<ol> 
 					{%for i in range(0, lenBooks)%}
 						<li>
-							<div class="book_row">
+							<div class="book_list_row">
 								<div class="v11_11">
 									<span class="v11_12">{{book_names[i]}}</span>
 								</div>
@@ -50,12 +53,15 @@
 									<span class="v11_20">{{seller_ids[i]}}</span>
 								</div>
 								<div class="v11_15">
-									<div class="v12_4"></div>
-									<span class="v11_16">{{purchase_prices[i]}}</span>
+									<!-- <div class="v12_4"></div> -->
+									<span class="v11_16">${{purchase_prices[i]}}</span>
 								</div>
 								<div class="v11_17">
-									<div class="v12_5"></div>
-									<span class="v11_18">{{rental_prices[i]}}</span>
+									<!-- <div class="v12_5"></div> -->
+									<span class="v11_18">${{rental_prices[i]}}</span>
+								</div>
+								<div class="book_list_isbn_box">
+									<span class="book_list_isbn">{{isbns[i]}}</span>
 								</div>
 							</div>
 						</li> 
@@ -64,6 +70,34 @@
 				</ol> 
 			
 			</div>
+
+			<form action="/buy" method="POST">
+				<div class="book_list_buy_input_box">
+					<div class="book_list_input_row">
+						<span class="book_list_input_text">ISBN:</span>
+						<input type="isbn" name="inputIsbn" id="inputIsbn" class="form-buy" placeholder="ISBN" required autofocus>
+					</div>
+				</div>
+				<button type="submit" id="btnBuy" class="book_list_buy_bubble">
+					<span class="book_list_buy_text">Buy</span>
+				</button>
+			</form>
+
+			<form action="/rent" method="POST">
+				<div class="book_list_rent_input_box">
+					<div class="book_list_input_row">
+						<span class="book_list_input_text">ISBN:</span>
+						<input type="isbn" name="inputIsbn" id="inputIsbn" class="form-rent" placeholder="ISBN" required autofocus>
+					</div>
+					<div class="book_list_input_row">
+						<span class="book_list_input_text">Rental end date:</span>
+						<input type="endDate" name="inputEndDate" id="inputEndDate" class="form-rent" placeholder="Date" required autofocus>
+					</div>
+				</div>
+				<button type="submit" id="btnRent" class="book_list_rent_bubble">
+					<span class="book_list_rent_text">Rent</span>
+				</button>
+			</form>
             
 		</div>
 	</body>
