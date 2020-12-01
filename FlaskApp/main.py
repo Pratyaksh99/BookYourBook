@@ -194,16 +194,25 @@ def do_rent():
     return render_template('homepageSignedIn.html')
 
 
-@app.route('/sell',methods=['POST'])
+@app.route('/sell',methods=['POST', 'GET'])
 def sell(errorMessage="", requestTrigger=True):
  
-    if requestTrigger:
+    if (request.method == 'POST') and requestTrigger:
         return do_sell()
-    return showBookList()
+    return render_template('sell.html', errorMessage=errorMessage) 
 
 def do_sell():
+    isbn = request.form['inputIsbn']
+    bookName = request.form['inputBookName']
+    course = request.form['inputCourse']
+    price = request.form['inputPrice']
 
-    print("Sell a book")
+    #Fetch necessary values
+
+    #Insert into table
+
+    return render_template('homepageSignedIn.html')
+
 
     
 if __name__ == "__main__":

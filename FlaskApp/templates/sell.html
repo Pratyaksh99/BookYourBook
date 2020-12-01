@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
+		<link href="../static/sell.css" rel="stylesheet" />
+		<title>Document</title>
+  </head>
+  
+	<body>
+		<div class="v13_4">
+			<div class="v13_5">
+				<div class="v13_6"></div>
+				<span class="v13_7">
+                    <a href="/showHomepageSignedIn">Back</a>
+                </span>
+            </div>
+            
+			<span class="v13_8">Book Your Book</span>
+			
+            <form action="/sell" method="POST">
+				<div class="sell_input_box">
+					<div class="sell_input_row">
+						<span class="sell_input_text">ISBN:</span>
+						<input type="number" name="inputIsbn" id="inputIsbn" class="form-sell" placeholder="ISBN" required autofocus>
+					</div>
+					<div class="sell_input_row">
+						<span class="sell_input_text">Book Name:</span>
+						<input type="text" name="inputBookName" id="inputBookName" class="form-sell" placeholder="Book Name" required autofocus>
+					</div>
+					<div class="sell_input_row">
+						<span class="sell_input_text">Course:</span>
+						<input type="text" name="inputCourse" id="inputCourse" class="form-sell" placeholder="Course" required autofocus>
+					</div>
+					<div class="sell_input_row">
+						<span class="sell_input_text">Price:</span>
+						<input type="number" name="inputPrice" id="inputPrice" class="form-sell" placeholder="Price" required autofocus>
+					</div>
+				</div>
+				<button type="submit" id="btnSell" class="sell_bubble">
+					<span class="sell_text">Sell</span>
+				</button>
+			</form>
+			
+		</div>
+  </body>
+  
+</html>
