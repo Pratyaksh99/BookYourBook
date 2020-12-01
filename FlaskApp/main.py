@@ -93,7 +93,7 @@ def do_signIn():
 
     connection.close()
 
-    if result == null:
+    if result == None:
         return signIn("User does not exist!", False)
 
     if result['user_password'] == password:
@@ -163,7 +163,9 @@ def buy(errorMessage="", requestTrigger=True):
         return do_buy()
     return showBookList()
 
-# def do_buy():
+def do_buy():
+
+    print("Buy a book!")
 
 @app.route('/rent',methods=['POST'])
 def rent(errorMessage="", requestTrigger=True):
@@ -173,7 +175,9 @@ def rent(errorMessage="", requestTrigger=True):
         return do_rent()
     return showBookList()
 
-# def do_rent():
+def do_rent():
+
+    print("Rent a book")
 
 @app.route('/sell',methods=['POST'])
 def sell(errorMessage="", requestTrigger=True):
@@ -182,8 +186,9 @@ def sell(errorMessage="", requestTrigger=True):
         return do_sell()
     return showBookList()
 
-# def do_sell():
+def do_sell():
 
+    print("Sell a book")
 
     
 if __name__ == "__main__":
