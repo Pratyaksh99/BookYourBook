@@ -190,7 +190,7 @@ def do_buy():
         if result['quantity'] > 1:
 
             # Insert into Purchases Table
-            sql = 'INSERT INTO Purchases (isbn, buyer_id, seller_id, purchase_price) VALUES (%s, %s, %s, %s, %s);'
+            sql = 'INSERT INTO Purchases (isbn, buyer_id, seller_id, purchase_price) VALUES (%s, %s, %s, %s);'
             cursor.execute(sql, (isbn, global_userId, result['seller_id'], result['purchase_price']))
 
             # Update the quantity in the Books Table
@@ -200,7 +200,7 @@ def do_buy():
         else:
 
             # Insert into Purchases Table
-            sql = 'INSERT INTO Purchases (isbn, buyer_id, seller_id, purchase_price) VALUES (%s, %s, %s, %s, %s);'
+            sql = 'INSERT INTO Purchases (isbn, buyer_id, seller_id, purchase_price) VALUES (%s, %s, %s, %s);'
             cursor.execute(sql, (isbn, global_userId, result['seller_id'], result['purchase_price']))
 
             # Delete from the Books Table
@@ -254,7 +254,7 @@ def do_rent():
     #     if result['quantity'] > 1:
 
     #         # Insert into Rentals Table
-    #         sql = 'INSERT INTO Rentals (isbn, buyer_id, seller_id, rented_period, rental_price) VALUES (%s, %s, %s, %s, %s, %s);'
+    #         sql = 'INSERT INTO Rentals (isbn, buyer_id, seller_id, rented_period, rental_price) VALUES (%s, %s, %s, %s, %s);'
     #         cursor.execute(sql, (isbn, global_userId, result['seller_id'], DATE, result['rental_price']))
             
     #         # Update the quantity in the Books Table
@@ -264,7 +264,7 @@ def do_rent():
     #     else:
 
     #         # Insert into Rentals Table
-    #         sql = 'INSERT INTO Rentals (isbn, buyer_id, seller_id, rented_period, rental_price) VALUES (%s, %s, %s, %s, %s, %s);'
+    #         sql = 'INSERT INTO Rentals (isbn, buyer_id, seller_id, rented_period, rental_price) VALUES (%s, %s, %s, %s, %s);'
     #         cursor.execute(sql, (isbn, global_userId, result['seller_id'], DATE, result['rental_price']))
 
     #         # Delete from the Books Table
@@ -326,7 +326,7 @@ def do_sell():
                 cursor.execute(sql, (course, name))
 
             #Insert into table if book does not exist
-            sql = 'INSERT INTO Books (isbn, book_name, course_id, seller_id, purchase_price, rental_price, quantity) VALUES (%d, %s, %d, %d, %d, %d, %d);'
+            sql = 'INSERT INTO Books (isbn, book_name, course_id, seller_id, purchase_price, rental_price, quantity) VALUES (%s, %s, %s, %s, %s, %s, %s);'
             cursor.execute(sql, (isbn, bookName, course, global_userId, p_price, r_price, 1))
 
         else:
