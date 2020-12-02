@@ -196,7 +196,7 @@ def do_buy():
             # Insert into Purchases Table
             sql = 'INSERT INTO Purchases (isbn, buyer_id, seller_id, purchase_date, purchase_price) VALUES (%d, %d, %d, %s, %d);'
             cursor.execute(sql, (isbn, global_userId, result['seller_id'], formatted_date, result['purchase_price']))
-            
+
             # Update the quantity in the Books Table
             sql = 'UPDATE Books SET quantity = quantity - 1 WHERE isbn=%s'
             cursor.execute(sql, isbn)
@@ -207,9 +207,20 @@ def do_buy():
             sql = 'INSERT INTO Purchases (isbn, buyer_id, seller_id, purchase_date, purchase_price) VALUES (%d, %d, %d, %s, %d);'
             cursor.execute(sql, (isbn, global_userId, result['seller_id'], formatted_date, result['purchase_price']))
 
-            # Deleet from the Books Table
-            sql = 'DELETE FROM Books SET quantity = quantity - 1 WHERE isbn=%s'
+            # Delete from the Books Table
+            sql = 'DELETE FROM Books WHERE isbn=%s'
             cursor.execute(sql, isbn)
+
+
+        # Check for Buyer in the Buyers table
+        sql = 'SELECT * FROM Buyers WHERE buyer_id=%d;'
+        cursor.execute(sql, global_userId)
+        result = cursor.fetchone()
+
+        if result == None:
+            # Insert into Buyers Table
+            sql = 'INSERT INTO Buyers (buyer_id) VALUES (%d);'
+            cursor.execute(sql, global_userId)
 
         cursor.commit()
 
@@ -279,14 +290,59 @@ def sell(errorMessage="", requestTrigger=True):
     return render_template('sell.html', errorMessage=errorMessage) 
 
 def do_sell():
+
     isbn = request.form['inputIsbn']
     bookName = request.form['inputBookName']
     course = request.form['inputCourse']
+    name = request.form['inputCourseName']
     price = request.form['inputPrice']
 
     #Fetch necessary values
+    connection = open_connection()
 
-    #Insert into table
+    with connection.cursor() as cursor:
+
+        sql = 'SELECT * FROM Books WHERE isbn=%s'
+        cursor.execute(sql, isbn)
+        result = cursor.fetchone()
+
+        if result == None:
+
+            # Check for Course in Courses table
+            sql = 'SELECT * FROM Courses WHERE course_id=%d;'
+            cursor.execute(sql, course)
+            result = cursor.fetchone()
+
+            if result == None:
+                # Insert into Courses Table
+                sql = 'INSERT INTO Courses (course_id, course_name) VALUES (%d, %s);'
+                cursor.execute(sql, (course, name))
+
+            #Insert into table if book does not exist
+            sql = 'INSERT INTO Books (isbn, book_name, course_id, seller_id, purchase_price, rental_price, quantity) VALUES (%d, %s, %d, %d, %d, %d, %d);'
+            cursor.execute(sql, (isbn, bookName, course, global_userId, price, price, 1))
+
+        else:
+
+            #Increment quantity if book already exists
+            sql = 'UPDATE Books SET quantity = quantity + 1 WHERE isbn=%s'
+            cursor.execute(sql, isbn)
+
+
+
+        # Check for Seller in Sellers table
+        sql = 'SELECT * FROM Sellers WHERE seller_id=%d;'
+        cursor.execute(sql, global_userId)
+        result = cursor.fetchone()
+
+        if result == None:
+            # Insert into Sellers Table
+            sql = 'INSERT INTO Sellers (seller_id) VALUES (%d);'
+            cursor.execute(sql, global_userId)
+
+        cursor.commit()
+        
+    connection.close()
 
     return render_template('homepageSignedIn.html')
 
