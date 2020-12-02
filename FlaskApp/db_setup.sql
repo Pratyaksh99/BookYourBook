@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS `BookYourBook`.`Sellers` (
 
 CREATE TABLE IF NOT EXISTS `BookYourBook`.`Buyers` (
 
-  buyer_id INTEGER UNIQUE AUTO_INCREMENT,
+  buyer_id INTEGER UNIQUE,
   PRIMARY KEY (buyer_id),
   FOREIGN KEY (buyer_id) REFERENCES Users(user_id)
 
