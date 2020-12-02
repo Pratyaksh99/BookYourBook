@@ -186,16 +186,12 @@ def do_buy():
         if result == None:
 
             return buy("Book does not exist!", False)
-
-        # Get today's date
-        date = datetime.now()
-        formatted_date = date.strftime('%Y-%m-%d %H:%M:%S')
         
         if result['quantity'] > 1:
 
             # Insert into Purchases Table
-            sql = 'INSERT INTO Purchases (isbn, buyer_id, seller_id, purchase_date, purchase_price) VALUES (%d, %d, %d, %s, %d);'
-            cursor.execute(sql, (isbn, global_userId, result['seller_id'], formatted_date, result['purchase_price']))
+            sql = 'INSERT INTO Purchases (isbn, buyer_id, seller_id, purchase_price) VALUES (%d, %d, %d, %s, %d);'
+            cursor.execute(sql, (isbn, global_userId, result['seller_id'], result['purchase_price']))
 
             # Update the quantity in the Books Table
             sql = 'UPDATE Books SET quantity = quantity - 1 WHERE isbn=%s'
@@ -204,8 +200,8 @@ def do_buy():
         else:
 
             # Insert into Purchases Table
-            sql = 'INSERT INTO Purchases (isbn, buyer_id, seller_id, purchase_date, purchase_price) VALUES (%d, %d, %d, %s, %d);'
-            cursor.execute(sql, (isbn, global_userId, result['seller_id'], formatted_date, result['purchase_price']))
+            sql = 'INSERT INTO Purchases (isbn, buyer_id, seller_id, purchase_price) VALUES (%d, %d, %d, %s, %d);'
+            cursor.execute(sql, (isbn, global_userId, result['seller_id'], result['purchase_price']))
 
             # Delete from the Books Table
             sql = 'DELETE FROM Books WHERE isbn=%s'
@@ -258,8 +254,8 @@ def do_rent():
     #     if result['quantity'] > 1:
 
     #         # Insert into Rentals Table
-    #         sql = 'INSERT INTO Rentals (isbn, buyer_id, seller_id, rental_date, rented_period, rental_price) VALUES (%d, %d, %d, %s, %d, %d);'
-    #         cursor.execute(sql, (isbn, global_userId, result['seller_id'], DATE, DATE, result['rental_price']))
+    #         sql = 'INSERT INTO Rentals (isbn, buyer_id, seller_id, rented_period, rental_price) VALUES (%d, %d, %d, %s, %d, %d);'
+    #         cursor.execute(sql, (isbn, global_userId, result['seller_id'], DATE, result['rental_price']))
             
     #         # Update the quantity in the Books Table
     #         sql = 'UPDATE Books SET quantity = quantity - 1 WHERE isbn=%s'
@@ -268,8 +264,8 @@ def do_rent():
     #     else:
 
     #         # Insert into Rentals Table
-    #         sql = 'INSERT INTO Rentals (isbn, buyer_id, seller_id, rental_date, rented_period, rental_price) VALUES (%d, %d, %d, %s, %d, %s);'
-    #         cursor.execute(sql, (isbn, global_userId, result['seller_id'], DATE, DATE, result['rental_price']))
+    #         sql = 'INSERT INTO Rentals (isbn, buyer_id, seller_id, rented_period, rental_price) VALUES (%d, %d, %d, %s, %d, %s);'
+    #         cursor.execute(sql, (isbn, global_userId, result['seller_id'], DATE, result['rental_price']))
 
     #         # Delete from the Books Table
     #         sql = 'DELETE FROM Books SET quantity = quantity - 1 WHERE isbn=%s'
