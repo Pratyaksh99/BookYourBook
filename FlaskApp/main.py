@@ -309,13 +309,13 @@ def do_sell():
         if result == None:
 
             # Check for Course in Courses table
-            sql = 'SELECT * FROM Courses WHERE course_id=%d;'
+            sql = 'SELECT * FROM Courses WHERE course_id=%s;'
             cursor.execute(sql, course)
             result = cursor.fetchone()
 
             if result == None:
                 # Insert into Courses Table
-                sql = 'INSERT INTO Courses (course_id, course_name) VALUES (%d, %s);'
+                sql = 'INSERT INTO Courses (course_id, course_name) VALUES (%s, %s);'
                 cursor.execute(sql, (course, name))
 
             #Insert into table if book does not exist
