@@ -301,7 +301,8 @@ def do_sell():
     bookName = request.form['inputBookName']
     course = request.form['inputCourse']
     name = request.form['inputCourseName']
-    price = request.form['inputPrice']
+    p_price = request.form['inputPurchasePrice']
+    r_price = request.form['inputRentalPrice']
 
     #Fetch necessary values
     connection = open_connection()
@@ -326,7 +327,7 @@ def do_sell():
 
             #Insert into table if book does not exist
             sql = 'INSERT INTO Books (isbn, book_name, course_id, seller_id, purchase_price, rental_price, quantity) VALUES (%d, %s, %d, %d, %d, %d, %d);'
-            cursor.execute(sql, (isbn, bookName, course, global_userId, price, price, 1))
+            cursor.execute(sql, (isbn, bookName, course, global_userId, p_price, r_price, 1))
 
         else:
 
