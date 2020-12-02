@@ -91,7 +91,7 @@ def do_signIn():
 
     with connection.cursor() as cursor:
         # Create a new record
-        sql = 'SELECT user_id, user_password FROM Users WHERE user_email=%s'
+        sql = 'SELECT user_id, user_password FROM Users WHERE user_email=%s;'
         cursor.execute(sql, email)
         result = cursor.fetchone()
 
@@ -179,7 +179,7 @@ def do_buy():
     with connection.cursor() as cursor:
 
         # Check if book exists
-        sql = 'SELECT * FROM Books WHERE isbn=%s'
+        sql = 'SELECT * FROM Books WHERE isbn=%s;'
         cursor.execute(sql, isbn)
         result = cursor.fetchone()
 
@@ -194,7 +194,7 @@ def do_buy():
             cursor.execute(sql, (isbn, global_userId, result['seller_id'], result['purchase_price']))
 
             # Update the quantity in the Books Table
-            sql = 'UPDATE Books SET quantity = quantity - 1 WHERE isbn=%s'
+            sql = 'UPDATE Books SET quantity = quantity - 1 WHERE isbn=%s;'
             cursor.execute(sql, isbn)
 
         else:
@@ -204,7 +204,7 @@ def do_buy():
             cursor.execute(sql, (isbn, global_userId, result['seller_id'], result['purchase_price']))
 
             # Delete from the Books Table
-            sql = 'DELETE FROM Books WHERE isbn=%s'
+            sql = 'DELETE FROM Books WHERE isbn=%s;'
             cursor.execute(sql, isbn)
 
 
@@ -243,7 +243,7 @@ def do_rent():
     # with connection.cursor() as cursor:
 
     #     # Check if book exists
-    #     sql = 'SELECT * FROM Books WHERE isbn=%s'
+    #     sql = 'SELECT * FROM Books WHERE isbn=%s;'
     #     cursor.execute(sql, isbn)
     #     result = cursor.fetchone()
 
@@ -268,7 +268,7 @@ def do_rent():
     #         cursor.execute(sql, (isbn, global_userId, result['seller_id'], DATE, result['rental_price']))
 
     #         # Delete from the Books Table
-    #         sql = 'DELETE FROM Books SET quantity = quantity - 1 WHERE isbn=%s'
+    #         sql = 'DELETE FROM Books SET quantity = quantity - 1 WHERE isbn=%s;'
     #         cursor.execute(sql, isbn)
 
     #      # Check for Buyer in the Buyers table
@@ -309,7 +309,7 @@ def do_sell():
 
     with connection.cursor() as cursor:
 
-        sql = 'SELECT * FROM Books WHERE isbn=%s'
+        sql = 'SELECT * FROM Books WHERE isbn=%s;'
         cursor.execute(sql, isbn)
         result = cursor.fetchone()
 
@@ -332,7 +332,7 @@ def do_sell():
         else:
 
             #Increment quantity if book already exists
-            sql = 'UPDATE Books SET quantity = quantity + 1 WHERE isbn=%s'
+            sql = 'UPDATE Books SET quantity = quantity + 1 WHERE isbn=%s;'
             cursor.execute(sql, isbn)
 
 
