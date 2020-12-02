@@ -239,8 +239,8 @@ def rent(errorMessage="", requestTrigger=True):
 
 def do_rent():
 
-    isbn = request.form['inputIsbn']
-    endDate = request.form['inputEndDate']
+    # isbn = request.form['inputIsbn']
+    # endDate = request.form['inputEndDate']
 
     # connection = open_connection()
 
@@ -274,6 +274,16 @@ def do_rent():
     #         # Delete from the Books Table
     #         sql = 'DELETE FROM Books SET quantity = quantity - 1 WHERE isbn=%s'
     #         cursor.execute(sql, isbn)
+
+    #      # Check for Buyer in the Buyers table
+    #     sql = 'SELECT * FROM Buyers WHERE buyer_id=%d;'
+    #     cursor.execute(sql, global_userId)
+    #     result = cursor.fetchone()
+
+    #     if result == None:
+    #         # Insert into Buyers Table
+    #         sql = 'INSERT INTO Buyers (buyer_id) VALUES (%d);'
+    #         cursor.execute(sql, global_userId)
 
     #     cursor.commit()
 
