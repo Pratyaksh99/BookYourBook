@@ -181,7 +181,7 @@ def do_buy():
         # Check if book exists
         sql = 'SELECT * FROM Books WHERE isbn=%s;'
         cursor.execute(sql, isbn)
-        result = cursor.fetchone()
+        main_result = cursor.fetchone()
 
         if result == None:
 
@@ -201,7 +201,7 @@ def do_buy():
 
             # Insert into Purchases Table
             sql = 'INSERT INTO Purchases (isbn, buyer_id, seller_id, purchase_price) VALUES (%s, %s, %s, %s);'
-            cursor.execute(sql, (isbn, global_userId, result['seller_id'], result['purchase_price']))
+            cursor.execute(sql, (isbn, global_userId, main_result['seller_id'], result['purchase_price']))
 
             # Update the quantity in the Books Table
             sql = 'UPDATE Books SET quantity = quantity - 1 WHERE isbn=%s;'
@@ -221,7 +221,7 @@ def do_buy():
 
             # Insert into Purchases Table
             sql = 'INSERT INTO Purchases (isbn, buyer_id, seller_id, purchase_price) VALUES (%s, %s, %s, %s);'
-            cursor.execute(sql, (isbn, global_userId, result['seller_id'], result['purchase_price']))
+            cursor.execute(sql, (isbn, global_userId, main_result['seller_id'], result['purchase_price']))
 
             # Delete from the Books Table
             sql = 'DELETE FROM Books WHERE isbn=%s;'
@@ -244,55 +244,65 @@ def rent(errorMessage="", requestTrigger=True):
 
 def do_rent():
 
-    # isbn = request.form['inputIsbn']
-    # endDate = request.form['inputEndDate']
+    isbn = request.form['inputIsbn']
+    endDate = request.form['inputEndDate']
 
-    # connection = open_connection()
+    connection = open_connection()
 
-    # with connection.cursor() as cursor:
+    with connection.cursor() as cursor:
 
-    #     # Check if book exists
-    #     sql = 'SELECT * FROM Books WHERE isbn=%s;'
-    #     cursor.execute(sql, isbn)
-    #     result = cursor.fetchone()
+        # Check if book exists
+        sql = 'SELECT * FROM Books WHERE isbn=%s;'
+        cursor.execute(sql, isbn)
+        main_result = cursor.fetchone()
 
-    #     if result == None:
+        if result == None:
 
-    #         return buy("Book does not exist!", False)
+            return buy("Book does not exist!", False)
         
-    #     if result['quantity'] > 1:
+        if result['quantity'] > 1:
 
-    #         # Insert into Rentals Table
-    #         sql = 'INSERT INTO Rentals (isbn, buyer_id, seller_id, rented_period, rental_price) VALUES (%s, %s, %s, %s, %s);'
-    #         cursor.execute(sql, (isbn, global_userId, result['seller_id'], DATE, result['rental_price']))
+             # Check for Buyer in the Buyers table
+            sql = 'SELECT * FROM Buyers WHERE buyer_id=%s;'
+            cursor.execute(sql, global_userId)
+            result = cursor.fetchone()
+
+            if result == None:
+                # Insert into Buyers Table
+                sql = 'INSERT INTO Buyers (buyer_id) VALUES (%s);'
+                cursor.execute(sql, (global_userId))
+
+            # Insert into Rentals Table
+            sql = 'INSERT INTO Rentals (isbn, buyer_id, seller_id, rented_period, rental_price) VALUES (%s, %s, %s, %s, %s);'
+            cursor.execute(sql, (isbn, global_userId, main_result['seller_id'], DATE, result['rental_price']))
             
-    #         # Update the quantity in the Books Table
-    #         sql = 'UPDATE Books SET quantity = quantity - 1 WHERE isbn=%s'
-    #         cursor.execute(sql, isbn)
+            # Update the quantity in the Books Table
+            sql = 'UPDATE Books SET quantity = quantity - 1 WHERE isbn=%s'
+            cursor.execute(sql, isbn)
 
-    #     else:
+        else:
 
-    #         # Insert into Rentals Table
-    #         sql = 'INSERT INTO Rentals (isbn, buyer_id, seller_id, rented_period, rental_price) VALUES (%s, %s, %s, %s, %s);'
-    #         cursor.execute(sql, (isbn, global_userId, result['seller_id'], DATE, result['rental_price']))
+            # Check for Buyer in the Buyers table
+            sql = 'SELECT * FROM Buyers WHERE buyer_id=%s;'
+            cursor.execute(sql, global_userId)
+            result = cursor.fetchone()
 
-    #         # Delete from the Books Table
-    #         sql = 'DELETE FROM Books SET quantity = quantity - 1 WHERE isbn=%s;'
-    #         cursor.execute(sql, isbn)
+            if result == None:
+                # Insert into Buyers Table
+                sql = 'INSERT INTO Buyers (buyer_id) VALUES (%s);'
+                cursor.execute(sql, (global_userId))
 
-    #      # Check for Buyer in the Buyers table
-    #     sql = 'SELECT * FROM Buyers WHERE buyer_id=%s;'
-    #     cursor.execute(sql, global_userId)
-    #     result = cursor.fetchone()
+            # Insert into Rentals Table
+            sql = 'INSERT INTO Rentals (isbn, buyer_id, seller_id, rented_period, rental_price) VALUES (%s, %s, %s, %s, %s);'
+            cursor.execute(sql, (isbn, global_userId, main_result['seller_id'], DATE, result['rental_price']))
 
-    #     if result == None:
-    #         # Insert into Buyers Table
-    #         sql = 'INSERT INTO Buyers (buyer_id) VALUES (%s);'
-    #         cursor.execute(sql, (global_userId))
+            # Delete from the Books Table
+            sql = 'DELETE FROM Books SET quantity = quantity - 1 WHERE isbn=%s;'
+            cursor.execute(sql, isbn)
 
-    #     cursor.commit()
+        cursor.commit()
 
-    # connection.close()
+    connection.close()
 
     return render_template('homepageSignedIn.html')
 
@@ -320,7 +330,7 @@ def do_sell():
 
         sql = 'SELECT * FROM Books WHERE isbn=%s;'
         cursor.execute(sql, isbn)
-        result = cursor.fetchone()
+        main_result = cursor.fetchone()
 
         if result == None:
 
