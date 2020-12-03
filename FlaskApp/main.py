@@ -183,11 +183,11 @@ def do_buy():
         cursor.execute(sql, isbn)
         main_result = cursor.fetchone()
 
-        if result == None:
+        if main_result == None:
 
             return buy("Book does not exist!", False)
         
-        if result['quantity'] > 1:
+        if main_result['quantity'] > 1:
 
             # Check for Buyer in the Buyers table
             sql = 'SELECT * FROM Buyers WHERE buyer_id=%s;'
@@ -256,11 +256,11 @@ def do_rent():
         cursor.execute(sql, isbn)
         main_result = cursor.fetchone()
 
-        if result == None:
+        if main_result == None:
 
             return buy("Book does not exist!", False)
         
-        if result['quantity'] > 1:
+        if main_result['quantity'] > 1:
 
              # Check for Buyer in the Buyers table
             sql = 'SELECT * FROM Buyers WHERE buyer_id=%s;'
@@ -332,7 +332,7 @@ def do_sell():
         cursor.execute(sql, isbn)
         main_result = cursor.fetchone()
 
-        if result == None:
+        if main_result == None:
 
             # Check for Seller in Sellers table
             sql = 'SELECT * FROM Sellers WHERE seller_id=%s;'
