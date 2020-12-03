@@ -227,7 +227,7 @@ def do_buy():
             sql = 'DELETE FROM Books WHERE isbn=%s;'
             cursor.execute(sql, isbn)
 
-        cursor.commit()
+    connection.commit()
 
     connection.close()
 
@@ -300,7 +300,7 @@ def do_rent():
             sql = 'DELETE FROM Books SET quantity = quantity - 1 WHERE isbn=%s;'
             cursor.execute(sql, isbn)
 
-        cursor.commit()
+    connection.commit()
 
     connection.close()
 
@@ -364,7 +364,7 @@ def do_sell():
             sql = 'UPDATE Books SET quantity = quantity + 1 WHERE isbn=%s;'
             cursor.execute(sql, isbn)
 
-        cursor.commit()
+    connection.commit()
         
     connection.close()
 
