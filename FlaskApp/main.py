@@ -201,7 +201,7 @@ def do_buy():
 
             # Insert into Purchases Table
             sql = 'INSERT INTO Purchases (isbn, buyer_id, seller_id, purchase_price) VALUES (%s, %s, %s, %s);'
-            cursor.execute(sql, (isbn, global_userId, main_result['seller_id'], result['purchase_price']))
+            cursor.execute(sql, (isbn, global_userId, main_result['seller_id'], main_result['purchase_price']))
 
             # Update the quantity in the Books Table
             sql = 'UPDATE Books SET quantity = quantity - 1 WHERE isbn=%s;'
@@ -221,7 +221,7 @@ def do_buy():
 
             # Insert into Purchases Table
             sql = 'INSERT INTO Purchases (isbn, buyer_id, seller_id, purchase_price) VALUES (%s, %s, %s, %s);'
-            cursor.execute(sql, (isbn, global_userId, main_result['seller_id'], result['purchase_price']))
+            cursor.execute(sql, (isbn, global_userId, main_result['seller_id'], main_result['purchase_price']))
 
             # Delete from the Books Table
             sql = 'DELETE FROM Books WHERE isbn=%s;'
@@ -274,7 +274,7 @@ def do_rent():
 
             # Insert into Rentals Table
             sql = 'INSERT INTO Rentals (isbn, buyer_id, seller_id, rented_period, rental_price) VALUES (%s, %s, %s, %s, %s);'
-            cursor.execute(sql, (isbn, global_userId, main_result['seller_id'], DATE, result['rental_price']))
+            cursor.execute(sql, (isbn, global_userId, main_result['seller_id'], DATE, main_result['rental_price']))
             
             # Update the quantity in the Books Table
             sql = 'UPDATE Books SET quantity = quantity - 1 WHERE isbn=%s'
@@ -294,7 +294,7 @@ def do_rent():
 
             # Insert into Rentals Table
             sql = 'INSERT INTO Rentals (isbn, buyer_id, seller_id, rented_period, rental_price) VALUES (%s, %s, %s, %s, %s);'
-            cursor.execute(sql, (isbn, global_userId, main_result['seller_id'], DATE, result['rental_price']))
+            cursor.execute(sql, (isbn, global_userId, main_result['seller_id'], DATE, main_result['rental_price']))
 
             # Delete from the Books Table
             sql = 'DELETE FROM Books SET quantity = quantity - 1 WHERE isbn=%s;'
