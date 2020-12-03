@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request
 import pymysql
 from datetime import datetime
-import logging
 
 app = Flask(__name__)
 
@@ -36,7 +35,7 @@ def main():
     return render_template('homepage.html')
 
 # Store the user id of the user in session
-global_userId = ""
+global_userId = 1
 
 @app.route('/signUp',methods=['POST', 'GET'])
 def signUp(errorMessage="", requestTrigger=True):
@@ -175,20 +174,14 @@ def do_buy():
 
     isbn = request.form['inputIsbn']
 
-    console.log("Opening connection now!")
-
     connection = open_connection()
 
     with connection.cursor() as cursor:
-
-        console.log("Checking for the Book!")
 
         # Check if book exists
         sql = 'SELECT * FROM Books WHERE isbn=%s;'
         cursor.execute(sql, isbn)
         result = cursor.fetchone()
-
-        console.log("Just Checked for the Book!")
 
         if result == None:
 
@@ -196,46 +189,43 @@ def do_buy():
         
         if result['quantity'] > 1:
 
-            console.log("Just Checked for the Quantity!")
+            # Check for Buyer in the Buyers table
+            sql = 'SELECT * FROM Buyers WHERE buyer_id=%s;'
+            cursor.execute(sql, global_userId)
+            result = cursor.fetchone()
+
+            if result == None:
+                # Insert into Buyers Table
+                sql = 'INSERT INTO Buyers (buyer_id) VALUES (%s);'
+                cursor.execute(sql, (global_userId))
 
             # Insert into Purchases Table
             sql = 'INSERT INTO Purchases (isbn, buyer_id, seller_id, purchase_price) VALUES (%s, %s, %s, %s);'
             cursor.execute(sql, (isbn, global_userId, result['seller_id'], result['purchase_price']))
-
-            console.log("Inserted into Purchases Table!")
 
             # Update the quantity in the Books Table
             sql = 'UPDATE Books SET quantity = quantity - 1 WHERE isbn=%s;'
             cursor.execute(sql, isbn)
 
-            console.log("Updated Book Quantity!")
-
         else:
+
+            # Check for Buyer in the Buyers table
+            sql = 'SELECT * FROM Buyers WHERE buyer_id=%s;'
+            cursor.execute(sql, global_userId)
+            result = cursor.fetchone()
+
+            if result == None:
+                # Insert into Buyers Table
+                sql = 'INSERT INTO Buyers (buyer_id) VALUES (%s);'
+                cursor.execute(sql, (global_userId)) 
 
             # Insert into Purchases Table
             sql = 'INSERT INTO Purchases (isbn, buyer_id, seller_id, purchase_price) VALUES (%s, %s, %s, %s);'
             cursor.execute(sql, (isbn, global_userId, result['seller_id'], result['purchase_price']))
 
-            console.log("Inserted into Purchases Table!")
-
             # Delete from the Books Table
             sql = 'DELETE FROM Books WHERE isbn=%s;'
             cursor.execute(sql, isbn)
-
-            console.log("Deleted Book!")
-
-
-        # Check for Buyer in the Buyers table
-        sql = 'SELECT * FROM Buyers WHERE buyer_id=%s;'
-        cursor.execute(sql, global_userId)
-        result = cursor.fetchone()
-
-        if result == None:
-            # Insert into Buyers Table
-            sql = 'INSERT INTO Buyers (buyer_id) VALUES (%s);'
-            cursor.execute(sql, (global_userId))
-
-            console.log("Inserted into Buyers table!")
 
         cursor.commit()
 
@@ -334,6 +324,16 @@ def do_sell():
 
         if result == None:
 
+            # Check for Seller in Sellers table
+            sql = 'SELECT * FROM Sellers WHERE seller_id=%s;'
+            cursor.execute(sql, global_userId)
+            result = cursor.fetchone()
+
+            if result == None:
+                # Insert into Sellers Table
+                sql = 'INSERT INTO Sellers (seller_id) VALUES (%s);'
+                cursor.execute(sql, (global_userId))
+
             # Check for Course in Courses table
             sql = 'SELECT * FROM Courses WHERE course_id=%s;'
             cursor.execute(sql, course)
@@ -353,18 +353,6 @@ def do_sell():
             #Increment quantity if book already exists
             sql = 'UPDATE Books SET quantity = quantity + 1 WHERE isbn=%s;'
             cursor.execute(sql, isbn)
-
-
-
-        # Check for Seller in Sellers table
-        sql = 'SELECT * FROM Sellers WHERE seller_id=%s;'
-        cursor.execute(sql, global_userId)
-        result = cursor.fetchone()
-
-        if result == None:
-            # Insert into Sellers Table
-            sql = 'INSERT INTO Sellers (seller_id) VALUES (%s);'
-            cursor.execute(sql, (global_userId))
 
         cursor.commit()
         
