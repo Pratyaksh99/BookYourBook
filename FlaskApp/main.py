@@ -156,6 +156,7 @@ def showBookList():
     seller_ids = []
     purchase_prices = []
     rental_prices = []
+    quantities = []
     for i in range(lenBooks):
         isbns.append(result[i]["isbn"])
         book_names.append(result[i]["book_name"])
@@ -163,10 +164,11 @@ def showBookList():
         seller_ids.append(result[i]["seller_id"])
         purchase_prices.append(result[i]["purchase_price"])
         rental_prices.append(result[i]["rental_price"])
+        quantities.append(result[i]["quantity"])
         
 
     return render_template('bookList.html', lenBooks=lenBooks, isbns=isbns, book_names=book_names, course_ids=course_ids, seller_ids=seller_ids, 
-    purchase_prices=purchase_prices, rental_prices=rental_prices)
+    purchase_prices=purchase_prices, rental_prices=rental_prices, quantities=quantities)
     
 @app.route('/buy',methods=['POST', 'GET'])
 def buy(errorMessage="", requestTrigger=True):
@@ -217,6 +219,10 @@ def do_buy():
 
             else:
 
+                if main_result['quantity'] == 0:
+                
+                    return buy("Book not available!", False)
+
                 # Check for Buyer in the Buyers table
                 sql = 'SELECT * FROM Buyers WHERE buyer_id=%s;'
                 cursor.execute(sql, global_userId)
@@ -232,7 +238,7 @@ def do_buy():
                 cursor.execute(sql, (isbn, global_userId, main_result['seller_id'], main_result['purchase_price']))
 
                 # Delete from the Books Table
-                sql = 'DELETE FROM Books WHERE isbn=%s;'
+                sql = 'UPDATE Books SET quantity = 0 WHERE isbn=%s;'
                 cursor.execute(sql, isbn)
 
         connection.commit()
@@ -306,6 +312,10 @@ def do_rent():
 
             else:
 
+                if main_result['quantity'] == 0:
+                
+                    return rent("Book not available!", False)
+
                 # Check for Buyer in the Buyers table
                 sql = 'SELECT * FROM Buyers WHERE buyer_id=%s;'
                 cursor.execute(sql, global_userId)
@@ -321,7 +331,7 @@ def do_rent():
                 cursor.execute(sql, (isbn, global_userId, main_result['seller_id'], DATE, main_result['rental_price']))
 
                 # Delete from the Books Table
-                sql = 'DELETE FROM Books SET quantity = quantity - 1 WHERE isbn=%s;'
+                sql = 'UPDATE Books SET quantity = 0 WHERE isbn=%s;'
                 cursor.execute(sql, isbn)
 
         connection.commit()
