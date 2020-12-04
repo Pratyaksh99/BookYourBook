@@ -15,20 +15,26 @@ def open_connection():
 
     unix_socket = '/cloudsql/{}'.format(db_connection_name)
     
-    conn = pymysql.connect(user=db_user, password=db_password,
-                            unix_socket=unix_socket, db=db_name,
-                            cursorclass=pymysql.cursors.DictCursor,
-                            )
-
-    # try:
-    #     conn = pymysql.connect(user=db_user, password=db_password,
+    # conn = pymysql.connect(user=db_user, password=db_password,
     #                         unix_socket=unix_socket, db=db_name,
-    #                         cursorclass=pymysql.cursors.DictCursor
+    #                         cursorclass=pymysql.cursors.DictCursor,
     #                         )
-    # except pymysql.MySQLError as e:
-    #     print(e)
 
-    return conn
+    try:
+
+        conn = pymysql.connect(user=db_user, password=db_password,
+                            unix_socket=unix_socket, db=db_name,
+                            cursorclass=pymysql.cursors.DictCursor
+                            )
+        
+        print("Connected to DB!")
+
+        return conn
+
+    except pymysql.MySQLError as e:
+
+        print("Failed to connect to the DB!")
+        print(e)
 
 @app.route("/")
 def main():
@@ -174,62 +180,78 @@ def do_buy():
 
     isbn = request.form['inputIsbn']
 
-    connection = open_connection()
+    try:
 
-    with connection.cursor() as cursor:
+        connection = open_connection()
 
-        # Check if book exists
-        sql = 'SELECT * FROM Books WHERE isbn=%s;'
-        cursor.execute(sql, isbn)
-        main_result = cursor.fetchone()
+        with connection.cursor() as cursor:
 
-        if main_result == None:
-
-            return buy("Book does not exist!", False)
-        
-        if main_result['quantity'] > 1:
-
-            # Check for Buyer in the Buyers table
-            sql = 'SELECT * FROM Buyers WHERE buyer_id=%s;'
-            cursor.execute(sql, global_userId)
-            result = cursor.fetchone()
-
-            if result == None:
-                # Insert into Buyers Table
-                sql = 'INSERT INTO Buyers (buyer_id) VALUES (%s);'
-                cursor.execute(sql, (global_userId))
-
-            # Insert into Purchases Table
-            sql = 'INSERT INTO Purchases (isbn, buyer_id, seller_id, purchase_price) VALUES (%s, %s, %s, %s);'
-            cursor.execute(sql, (isbn, global_userId, main_result['seller_id'], main_result['purchase_price']))
-
-            # Update the quantity in the Books Table
-            sql = 'UPDATE Books SET quantity = quantity - 1 WHERE isbn=%s;'
+            # Check if book exists
+            sql = 'SELECT * FROM Books WHERE isbn=%s;'
             cursor.execute(sql, isbn)
+            main_result = cursor.fetchone()
 
-        else:
+            if main_result == None:
 
-            # Check for Buyer in the Buyers table
-            sql = 'SELECT * FROM Buyers WHERE buyer_id=%s;'
-            cursor.execute(sql, global_userId)
-            result = cursor.fetchone()
+                return buy("Book does not exist!", False)
+            
+            if main_result['quantity'] > 1:
 
-            if result == None:
-                # Insert into Buyers Table
-                sql = 'INSERT INTO Buyers (buyer_id) VALUES (%s);'
-                cursor.execute(sql, (global_userId)) 
+                # Check for Buyer in the Buyers table
+                sql = 'SELECT * FROM Buyers WHERE buyer_id=%s;'
+                cursor.execute(sql, global_userId)
+                result = cursor.fetchone()
 
-            # Insert into Purchases Table
-            sql = 'INSERT INTO Purchases (isbn, buyer_id, seller_id, purchase_price) VALUES (%s, %s, %s, %s);'
-            cursor.execute(sql, (isbn, global_userId, main_result['seller_id'], main_result['purchase_price']))
+                if result == None:
+                    # Insert into Buyers Table
+                    sql = 'INSERT INTO Buyers (buyer_id) VALUES (%s);'
+                    cursor.execute(sql, (global_userId))
 
-            # Delete from the Books Table
-            sql = 'DELETE FROM Books WHERE isbn=%s;'
-            cursor.execute(sql, isbn)
+                # Insert into Purchases Table
+                sql = 'INSERT INTO Purchases (isbn, buyer_id, seller_id, purchase_price) VALUES (%s, %s, %s, %s);'
+                cursor.execute(sql, (isbn, global_userId, main_result['seller_id'], main_result['purchase_price']))
 
-    connection.commit()
+                # Update the quantity in the Books Table
+                sql = 'UPDATE Books SET quantity = quantity - 1 WHERE isbn=%s;'
+                cursor.execute(sql, isbn)
 
-    connection.close()
+            else:
+
+                # Check for Buyer in the Buyers table
+                sql = 'SELECT * FROM Buyers WHERE buyer_id=%s;'
+                cursor.execute(sql, global_userId)
+                result = cursor.fetchone()
+
+                if result == None:
+                    # Insert into Buyers Table
+                    sql = 'INSERT INTO Buyers (buyer_id) VALUES (%s);'
+                    cursor.execute(sql, (global_userId)) 
+
+                # Insert into Purchases Table
+                sql = 'INSERT INTO Purchases (isbn, buyer_id, seller_id, purchase_price) VALUES (%s, %s, %s, %s);'
+                cursor.execute(sql, (isbn, global_userId, main_result['seller_id'], main_result['purchase_price']))
+
+                # Delete from the Books Table
+                sql = 'DELETE FROM Books WHERE isbn=%s;'
+                cursor.execute(sql, isbn)
+
+        connection.commit()
+
+        print("Buy done!")
+
+    except pymysql.MySQLError as e:
+
+        print("Failed to buy!")
+        print(e)
+
+        connection.rollback()
+
+    finally:
+
+        if (connection.open):
+
+            connection.close()
+            print("Connection is closed!")
 
     return render_template('homepageSignedIn.html')
 
@@ -247,62 +269,79 @@ def do_rent():
     isbn = request.form['inputIsbn']
     endDate = request.form['inputEndDate']
 
-    connection = open_connection()
+    try:
 
-    with connection.cursor() as cursor:
+        connection = open_connection()
 
-        # Check if book exists
-        sql = 'SELECT * FROM Books WHERE isbn=%s;'
-        cursor.execute(sql, isbn)
-        main_result = cursor.fetchone()
+        with connection.cursor() as cursor:
 
-        if main_result == None:
+            # Check if book exists
+            sql = 'SELECT * FROM Books WHERE isbn=%s;'
+            cursor.execute(sql, isbn)
+            main_result = cursor.fetchone()
 
-            return buy("Book does not exist!", False)
-        
-        if main_result['quantity'] > 1:
+            if main_result == None:
 
-             # Check for Buyer in the Buyers table
-            sql = 'SELECT * FROM Buyers WHERE buyer_id=%s;'
-            cursor.execute(sql, global_userId)
-            result = cursor.fetchone()
-
-            if result == None:
-                # Insert into Buyers Table
-                sql = 'INSERT INTO Buyers (buyer_id) VALUES (%s);'
-                cursor.execute(sql, (global_userId))
-
-            # Insert into Rentals Table
-            sql = 'INSERT INTO Rentals (isbn, buyer_id, seller_id, rented_period, rental_price) VALUES (%s, %s, %s, %s, %s);'
-            cursor.execute(sql, (isbn, global_userId, main_result['seller_id'], DATE, main_result['rental_price']))
+                return buy("Book does not exist!", False)
             
-            # Update the quantity in the Books Table
-            sql = 'UPDATE Books SET quantity = quantity - 1 WHERE isbn=%s'
-            cursor.execute(sql, isbn)
+            if main_result['quantity'] > 1:
 
-        else:
+                # Check for Buyer in the Buyers table
+                sql = 'SELECT * FROM Buyers WHERE buyer_id=%s;'
+                cursor.execute(sql, global_userId)
+                result = cursor.fetchone()
 
-            # Check for Buyer in the Buyers table
-            sql = 'SELECT * FROM Buyers WHERE buyer_id=%s;'
-            cursor.execute(sql, global_userId)
-            result = cursor.fetchone()
+                if result == None:
+                    # Insert into Buyers Table
+                    sql = 'INSERT INTO Buyers (buyer_id) VALUES (%s);'
+                    cursor.execute(sql, (global_userId))
 
-            if result == None:
-                # Insert into Buyers Table
-                sql = 'INSERT INTO Buyers (buyer_id) VALUES (%s);'
-                cursor.execute(sql, (global_userId))
+                # Insert into Rentals Table
+                sql = 'INSERT INTO Rentals (isbn, buyer_id, seller_id, rented_period, rental_price) VALUES (%s, %s, %s, %s, %s);'
+                cursor.execute(sql, (isbn, global_userId, main_result['seller_id'], DATE, main_result['rental_price']))
+                
+                # Update the quantity in the Books Table
+                sql = 'UPDATE Books SET quantity = quantity - 1 WHERE isbn=%s'
+                cursor.execute(sql, isbn)
 
-            # Insert into Rentals Table
-            sql = 'INSERT INTO Rentals (isbn, buyer_id, seller_id, rented_period, rental_price) VALUES (%s, %s, %s, %s, %s);'
-            cursor.execute(sql, (isbn, global_userId, main_result['seller_id'], DATE, main_result['rental_price']))
+            else:
 
-            # Delete from the Books Table
-            sql = 'DELETE FROM Books SET quantity = quantity - 1 WHERE isbn=%s;'
-            cursor.execute(sql, isbn)
+                # Check for Buyer in the Buyers table
+                sql = 'SELECT * FROM Buyers WHERE buyer_id=%s;'
+                cursor.execute(sql, global_userId)
+                result = cursor.fetchone()
 
-    connection.commit()
+                if result == None:
+                    # Insert into Buyers Table
+                    sql = 'INSERT INTO Buyers (buyer_id) VALUES (%s);'
+                    cursor.execute(sql, (global_userId))
 
-    connection.close()
+                # Insert into Rentals Table
+                sql = 'INSERT INTO Rentals (isbn, buyer_id, seller_id, rented_period, rental_price) VALUES (%s, %s, %s, %s, %s);'
+                cursor.execute(sql, (isbn, global_userId, main_result['seller_id'], DATE, main_result['rental_price']))
+
+                # Delete from the Books Table
+                sql = 'DELETE FROM Books SET quantity = quantity - 1 WHERE isbn=%s;'
+                cursor.execute(sql, isbn)
+
+        connection.commit()
+
+        print("Rent done!")
+
+    except pymysql.MySQLError as e:
+
+        print("Failed to rent!")
+        print(e)
+
+        connection.rollback()
+
+    finally:
+
+        if (connection.open):
+
+            connection.close()
+            print("Connection is closed!")
+    
 
     return render_template('homepageSignedIn.html')
 
@@ -323,53 +362,68 @@ def do_sell():
     p_price = request.form['inputPurchasePrice']
     r_price = request.form['inputRentalPrice']
 
-    #Fetch necessary values
-    connection = open_connection()
+    try:
 
-    with connection.cursor() as cursor:
+        connection = open_connection()
 
-        sql = 'SELECT * FROM Books WHERE isbn=%s;'
-        cursor.execute(sql, isbn)
-        main_result = cursor.fetchone()
+        with connection.cursor() as cursor:
 
-        if main_result == None:
-
-            # Check for Seller in Sellers table
-            sql = 'SELECT * FROM Sellers WHERE seller_id=%s;'
-            cursor.execute(sql, global_userId)
-            result = cursor.fetchone()
-
-            if result == None:
-                # Insert into Sellers Table
-                sql = 'INSERT INTO Sellers (seller_id) VALUES (%s);'
-                cursor.execute(sql, (global_userId))
-
-            # Check for Course in Courses table
-            sql = 'SELECT * FROM Courses WHERE course_id=%s;'
-            cursor.execute(sql, course)
-            result = cursor.fetchone()
-
-            if result == None:
-                # Insert into Courses Table
-                sql = 'INSERT INTO Courses (course_id, course_name) VALUES (%s, %s);'
-                cursor.execute(sql, (course, name))
-
-            #Insert into table if book does not exist
-            sql = 'INSERT INTO Books (isbn, book_name, course_id, seller_id, purchase_price, rental_price, quantity) VALUES (%s, %s, %s, %s, %s, %s, %s);'
-            cursor.execute(sql, (isbn, bookName, course, global_userId, p_price, r_price, 1))
-
-        else:
-
-            #Increment quantity if book already exists
-            sql = 'UPDATE Books SET quantity = quantity + 1 WHERE isbn=%s;'
+            sql = 'SELECT * FROM Books WHERE isbn=%s;'
             cursor.execute(sql, isbn)
+            main_result = cursor.fetchone()
 
-    connection.commit()
+            if main_result == None:
+
+                # Check for Seller in Sellers table
+                sql = 'SELECT * FROM Sellers WHERE seller_id=%s;'
+                cursor.execute(sql, global_userId)
+                result = cursor.fetchone()
+
+                if result == None:
+                    # Insert into Sellers Table
+                    sql = 'INSERT INTO Sellers (seller_id) VALUES (%s);'
+                    cursor.execute(sql, (global_userId))
+
+                # Check for Course in Courses table
+                sql = 'SELECT * FROM Courses WHERE course_id=%s;'
+                cursor.execute(sql, course)
+                result = cursor.fetchone()
+
+                if result == None:
+                    # Insert into Courses Table
+                    sql = 'INSERT INTO Courses (course_id, course_name) VALUES (%s, %s);'
+                    cursor.execute(sql, (course, name))
+
+                #Insert into table if book does not exist
+                sql = 'INSERT INTO Books (isbn, book_name, course_id, seller_id, purchase_price, rental_price, quantity) VALUES (%s, %s, %s, %s, %s, %s, %s);'
+                cursor.execute(sql, (isbn, bookName, course, global_userId, p_price, r_price, 1))
+
+            else:
+
+                #Increment quantity if book already exists
+                sql = 'UPDATE Books SET quantity = quantity + 1 WHERE isbn=%s;'
+                cursor.execute(sql, isbn)
+
+        connection.commit()
+
+        print("Sell done!")
+
+    except pymysql.MySQLError as e:
+
+        print("Failed to sell!")
+        print(e)
+
+        connection.rollback()
+
+    finally:
+
+        if (connection.open):
+
+            connection.close()
+            print("Connection is closed!")
         
-    connection.close()
 
     return render_template('homepageSignedIn.html')
-
 
     
 if __name__ == "__main__":
