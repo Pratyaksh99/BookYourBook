@@ -49,7 +49,7 @@
     opacity: 1;
     text-align: left;
   }
-  .v6_7 {
+  .book_list_title {
     width: 100%;
     color: rgba(101,188,151,1);
     position: absolute;
@@ -71,105 +71,61 @@
     left: 150px;
     overflow: hidden;
   }
-  .v11_0 {
+  .book_list_title_header {
     width: 238px;
     height: 72px;
-    background: url("../images/v11_0.png");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
     opacity: 1;
     position: relative;
     top: 0px;
     left: 0px;
     overflow: hidden;
   }
-  .v11_1 {
-    width: 74px;
-    color: rgba(96,96,96,1);
-    position: absolute;
-    top: 36px;
-    left: 0px;
-    font-family: Roboto;
-    font-weight: Regular;
-    font-size: 20px;
-    opacity: 1;
-    text-align: left;
-  }
-  .v11_2 {
+  .book_list_course_header {
     width: 238px;
     height: 72px;
-    background: url("../images/v11_2.png");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
     opacity: 1;
     position: absolute;
     top: 0px;
     left: 238px;
     overflow: hidden;
   }
-  .v11_3 {
-    width: 89px;
-    color: rgba(96,96,96,1);
-    position: absolute;
-    top: 36px;
-    left: 0px;
-    font-family: Roboto;
-    font-weight: Regular;
-    font-size: 20px;
-    opacity: 1;
-    text-align: left;
-  }
-  .v11_4 {
+  .book_list_purchase_header {
     width: 182px;
     height: 72px;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
     opacity: 1;
     position: absolute;
     top: 0px;
     left: 665px;
     overflow: hidden;
   }
-  .v11_5 {
-    width: 89px;
-    color: rgba(96,96,96,1);
-    position: absolute;
-    top: 36px;
-    left: 0px;
-    font-family: Roboto;
-    font-weight: Regular;
-    font-size: 20px;
-    opacity: 1;
-    text-align: left;
-  }
-  .v11_6 {
+  .book_list_rent_header {
     width: 186px;
     height: 72px;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
     opacity: 1;
     position: absolute;
     top: 0px;
     left: 847px;
     overflow: hidden;
   }
-  .book_list_isbn_header {
+  .book_list_quantity_header {
     width: 186px;
     height: 72px;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
     opacity: 1;
     position: absolute;
     top: 0px;
-    left: 1033px;
+    left: 983px;
     overflow: hidden;
   }
-  .v11_7 {
+  .book_list_isbn_header {
+    width: 186px;
+    height: 72px;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    left: 1169px;
+    overflow: hidden;
+  }
+  .book_list_header_text {
     width: 117px;
     color: rgba(96,96,96,1);
     position: absolute;
@@ -181,203 +137,17 @@
     opacity: 1;
     text-align: left;
   }
-  .v11_8 {
+  .book_list_seller_header {
     width: 189px;
     height: 72px;
-    background: url("../images/v11_8.png");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
     opacity: 1;
     position: absolute;
     top: 0px;
     left: 476px;
     overflow: hidden;
   }
-  .v11_9 {
-    width: 89px;
-    color: rgba(96,96,96,1);
-    position: absolute;
-    top: 36px;
-    left: 0px;
-    font-family: Roboto;
-    font-weight: Regular;
-    font-size: 20px;
-    opacity: 1;
-    text-align: left;
-  }
-  .v11_11 {
-    width: 238px;
-    height: 72px;
-    background: url("../images/v11_11.png");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    opacity: 1;
-    position: relative;
-    top: 0px;
-    left: 0px;
-    overflow: hidden;
-  }
-  .v11_12 {
+  .book_list_row_text {
     width: 198px;
-    color: rgba(0,0,0,1);
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    left: 40px;
-    font-family: Roboto;
-    font-weight: Regular;
-    font-size: 24px;
-    opacity: 1;
-    text-align: left;
-  }
-  .v11_13 {
-    width: 238px;
-    height: 72px;
-    background: url("../images/v11_13.png");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    opacity: 1;
-    position: absolute;
-    top: 0px;
-    left: 238px;
-    overflow: hidden;
-  }
-  .v11_14 {
-    width: 198px;
-    color: rgba(0,0,0,1);
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    left: 40px;
-    font-family: Roboto;
-    font-weight: Regular;
-    font-size: 24px;
-    opacity: 1;
-    text-align: left;
-  }
-  .v12_4 {
-    width: 110px;
-    height: 40px;
-    background: rgba(101,188,151,1);
-    opacity: 1;
-    position: absolute;
-    top: 16px;
-    left: 36px;
-    border-top-left-radius: 59px;
-    border-top-right-radius: 59px;
-    border-bottom-left-radius: 59px;
-    border-bottom-right-radius: 59px;
-    overflow: hidden;
-  }
-  .v11_15 {
-    width: 182px;
-    height: 72px;
-    background: url("../images/v11_15.png");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    opacity: 1;
-    position: absolute;
-    top: 0px;
-    left: 665px;
-    overflow: hidden;
-  }
-  .v11_16 {
-    width: 182px;
-    color: rgba(0,0,0,1);
-    position: absolute;
-    margin: auto;
-    top: 50%;
-    transform: translateY(-50%);
-    font-family: Roboto;
-    font-weight: Regular;
-    font-size: 24px;
-    opacity: 1;
-    text-align: center;
-  }
-  .v11_17 {
-    width: 186px;
-    height: 72px;
-    background: url("../images/v11_17.png");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    opacity: 1;
-    position: absolute;
-    top: 0px;
-    left: 847px;
-    overflow: hidden;
-  }
-  .v12_5 {
-    width: 110px;
-    height: 40px;
-    background: rgba(101,188,151,1);
-    opacity: 1;
-    position: absolute;
-    top: 16px;
-    left: 36px;
-    border-top-left-radius: 59px;
-    border-top-right-radius: 59px;
-    border-bottom-left-radius: 59px;
-    border-bottom-right-radius: 59px;
-    overflow: hidden;
-  }
-  .v11_18 {
-    width: 186px;
-    color: rgba(0,0,0,1);
-    position: absolute;
-    margin: auto;
-    top: 50%;
-    transform: translateY(-50%);
-    font-family: Roboto;
-    font-weight: Regular;
-    font-size: 24px;
-    opacity: 1;
-    text-align: center;
-  }
-  .book_list_isbn_box {
-    width: 186px;
-    height: 72px;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    opacity: 1;
-    position: absolute;
-    top: 0px;
-    left: 1015px;
-    overflow: hidden;
-  }
-  .book_list_isbn {
-    width: 186px;
-    color: rgba(0,0,0,1);
-    position: absolute;
-    margin: auto;
-    top: 50%;
-    transform: translateY(-50%);
-    font-family: Roboto;
-    font-weight: Regular;
-    font-size: 24px;
-    opacity: 1;
-    text-align: center;
-  }
-  .v11_19 {
-    width: 189px;
-    height: 72px;
-    background: url("../images/v11_19.png");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    opacity: 1;
-    position: absolute;
-    top: 0px;
-    left: 476px;
-    overflow: hidden;
-  }
-  .v11_20 {
-    width: 149px;
     color: rgba(0,0,0,1);
     position: absolute;
     top: 50%;
@@ -398,168 +168,74 @@
     left: 100px;
     overflow: hidden;
   }
-  .v11_22 {
+  .book_list_row_title {
     width: 238px;
     height: 72px;
-    background: url("../images/v11_22.png");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
     opacity: 1;
-    position: relative;
+    position: absolute;
     top: 0px;
     left: 0px;
     overflow: hidden;
   }
-  .v11_23 {
-    width: 198px;
-    color: rgba(0,0,0,1);
-    position: absolute;
-    top: 0px;
-    left: 40px;
-    font-family: Roboto;
-    font-weight: Regular;
-    font-size: 24px;
-    opacity: 1;
-    text-align: left;
-  }
-  .v11_24 {
+  .book_list_row_course {
     width: 238px;
     height: 72px;
-    background: url("../images/v11_24.png");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
     opacity: 1;
     position: absolute;
     top: 0px;
     left: 238px;
     overflow: hidden;
   }
-  .v11_25 {
-    width: 198px;
-    color: rgba(0,0,0,1);
-    position: absolute;
-    top: 0px;
-    left: 40px;
-    font-family: Roboto;
-    font-weight: Regular;
-    font-size: 24px;
-    opacity: 1;
-    text-align: left;
-  }
-  .v11_26 {
-    width: 182px;
-    height: 72px;
-    background: url("../images/v11_26.png");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    opacity: 1;
-    position: absolute;
-    top: 0px;
-    left: 665px;
-    overflow: hidden;
-  }
-  .v12_2 {
-    width: 110px;
-    height: 40px;
-    background: rgba(101,188,151,1);
-    opacity: 1;
-    position: absolute;
-    top: 16px;
-    left: 36px;
-    border-top-left-radius: 59px;
-    border-top-right-radius: 59px;
-    border-bottom-left-radius: 59px;
-    border-bottom-right-radius: 59px;
-    overflow: hidden;
-  }
-  .v11_27 {
-    width: 181px;
-    color: rgba(0,0,0,1);
-    position: absolute;
-    margin: auto;
-    top: 50%;
-    transform: translateY(-50%);
-    font-family: Roboto;
-    font-weight: Regular;
-    font-size: 24px;
-    opacity: 1;
-    text-align: center;
-  }
-  .v11_28 {
-    width: 186px;
-    height: 72px;
-    background: url("../images/v11_28.png");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    opacity: 1;
-    position: absolute;
-    top: 0px;
-    left: 847px;
-    overflow: hidden;
-  }
-  .v12_3 {
-    width: 110px;
-    height: 40px;
-    background: rgba(101,188,151,1);
-    opacity: 1;
-    position: absolute;
-    top: 16px;
-    left: 36px;
-    border-top-left-radius: 59px;
-    border-top-right-radius: 59px;
-    border-bottom-left-radius: 59px;
-    border-bottom-right-radius: 59px;
-    overflow: hidden;
-  }
-  .v11_29 {
-    width: 186px;
-    color: rgba(0,0,0,1);
-    position: absolute;
-    margin: auto;
-    top: 50%;
-    transform: translateY(-50%);
-    font-family: Roboto;
-    font-weight: Regular;
-    font-size: 24px;
-    opacity: 1;
-    text-align: center;
-  }
-  .v11_30 {
+  .book_list_row_seller {
     width: 189px;
     height: 72px;
-    background: url("../images/v11_30.png");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
     opacity: 1;
     position: absolute;
     top: 0px;
     left: 476px;
     overflow: hidden;
   }
-  .v11_31 {
-    width: 149px;
-    color: rgba(0,0,0,1);
+  .book_list_row_purchase {
+    width: 182px;
+    height: 72px;
+    opacity: 1;
     position: absolute;
     top: 0px;
-    left: 40px;
-    font-family: Roboto;
-    font-weight: Regular;
-    font-size: 24px;
-    opacity: 1;
-    text-align: left;
+    left: 665px;
+    overflow: hidden;
   }
-
+  .book_list_row_rent {
+    width: 186px;
+    height: 72px;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    left: 847px;
+    overflow: hidden;
+  }
+  .book_list_row_quantity {
+    width: 186px;
+    height: 72px;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    left: 1020px;
+    overflow: hidden;
+  }
+  .book_list_row_isbn {
+    width: 186px;
+    height: 72px;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    left: 1180px;
+    overflow: hidden;
+  }
   .book_list_table {
     position: absolute;
     top: 600px;
     width: 100%;
   }
-
   .book_list_buy_bubble {
     width: 219px;
     height: 76px;
@@ -574,7 +250,6 @@
     border-bottom-right-radius: 59px;
     overflow: hidden;
   }
-
   .book_list_buy_text {
     width: 60px;
     color: rgba(255,255,255,1);
@@ -585,7 +260,6 @@
     opacity: 1;
     text-align: left;
   }
-  
   .book_list_rent_bubble {
     width: 219px;
     height: 76px;
@@ -600,7 +274,6 @@
     border-bottom-right-radius: 59px;
     overflow: hidden;
   }
-
   .book_list_rent_text {
     width: 58px;
     color: rgba(255,255,255,1);
@@ -611,35 +284,24 @@
     opacity: 1;
     text-align: left;
   }
-
   .book_list_buy_input_box {
     width: 361px;
     height: 216px;
-    background: url("../images/v14_0.png");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
     opacity: 1;
     position: absolute;
     top: 450px;
     left: 100px;
     overflow: hidden;
   }
-
   .book_list_rent_input_box {
     width: 361px;
     height: 216px;
-    background: url("../images/v14_0.png");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
     opacity: 1;
     position: absolute;
     top: 450px;
     left: 1050px;
     overflow: hidden;
   }
-
   .book_list_input_row {
     width: 361px;
     height: 72px;

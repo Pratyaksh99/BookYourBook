@@ -15,30 +15,30 @@
 				</span>
             </div>
             
-            <span class="v6_7">Book Your Book</span>
+            <span class="book_list_title">Book Your Book</span>
 			
 			<div class="book_list_table">
 				<div class="book_list_headings">
-					<div class="v11_0">
-						<span class="v11_1">Title</span>
+					<div class="book_list_title_header">
+						<span class="book_list_header_text">Title</span>
 					</div>
-					<div class="v11_2">
-						<span class="v11_3">Course</span>
+					<div class="book_list_course_header">
+						<span class="book_list_header_text">Course</span>
 					</div>
-					<div class="v11_8">
-						<span class="v11_9">Seller</span>
+					<div class="book_list_seller_header">
+						<span class="book_list_header_text">Seller</span>
 					</div>
-					<div class="v11_4">
-						<span class="v11_5">Purchase</span>
+					<div class="book_list_purchase_header">
+						<span class="book_list_header_text">Purchase</span>
 					</div>
-					<div class="v11_6">
-						<span class="v11_7">Rent</span>
+					<div class="book_list_rent_header">
+						<span class="book_list_header_text">Rent</span>
 					</div>
-					<!-- <div class="v11_55">
-						<span class="v11_7">Quantity</span>
-					</div> -->
+					<div class="book_list_quantity_header">
+						<span class="book_list_header_text">Quantity</span>
+					</div>
 					<div class="book_list_isbn_header">
-						<span class="v11_7">ISBN</span>
+						<span class="book_list_header_text">ISBN</span>
 					</div>
 				</div>
 
@@ -46,28 +46,26 @@
 					{%for i in range(0, lenBooks)%}
 						<li>
 							<div class="book_list_row">
-								<div class="v11_11">
-									<span class="v11_12">{{book_names[i]}}</span>
+								<div class="book_list_row_title">
+									<span class="book_list_row_text">{{book_names[i]}}</span>
 								</div>
-								<div class="v11_13">
-									<span class="v11_14">{{course_ids[i]}}</span>
+								<div class="book_list_row_course">
+									<span class="book_list_row_text">{{course_ids[i]}}</span>
 								</div>
-								<div class="v11_19">
-									<span class="v11_20">{{seller_ids[i]}}</span>
+								<div class="book_list_row_seller">
+									<span class="book_list_row_text">{{seller_ids[i]}}</span>
 								</div>
-								<div class="v11_15">
-									<!-- <div class="v12_4"></div> -->
-									<span class="v11_16">${{purchase_prices[i]}}</span>
+								<div class="book_list_row_purchase">
+									<span class="book_list_row_text">${{purchase_prices[i]}}</span>
 								</div>
-								<div class="v11_17">
-									<!-- <div class="v12_5"></div> -->
-									<span class="v11_18">${{rental_prices[i]}}</span>
+								<div class="book_list_row_rent">
+									<span class="book_list_row_text">${{rental_prices[i]}}</span>
 								</div>
-								<!-- <div class="v11_77">
-									<span class="v11_18">{{quantities[i]}}</span>
-								</div> -->
-								<div class="book_list_isbn_box">
-									<span class="book_list_isbn">{{isbns[i]}}</span>
+								<div class="book_list_row_quantity">
+									<span class="book_list_row_text">{{quantities[i]}}</span>
+								</div>
+								<div class="book_list_row_isbn">
+									<span class="book_list_row_text">{{isbns[i]}}</span>
 								</div>
 							</div>
 						</li> 
