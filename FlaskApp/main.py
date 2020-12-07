@@ -116,6 +116,74 @@ def do_signIn():
 @app.route('/showHomepageSignedIn')
 def showHomepageSignedIn():
     return render_template('homepageSignedIn.html')
+
+@app.route('/sortDes')
+def sortBooks():
+
+    connection = open_connection()
+
+    with connection.cursor() as cursor:
+        
+        cursor.execute('SELECT * FROM Books SORT BY purchase_price DESC;')
+        result = cursor.fetchall()
+        print(result)
+
+    connection.close()
+
+    lenBooks = len(result)
+    isbns = []
+    book_names = []
+    course_ids = []
+    seller_ids = []
+    purchase_prices = []
+    rental_prices = []
+    quantities = []
+    for i in range(lenBooks):
+        isbns.append(result[i]["isbn"])
+        book_names.append(result[i]["book_name"])
+        course_ids.append(result[i]["course_id"])
+        seller_ids.append(result[i]["seller_id"])
+        purchase_prices.append(result[i]["purchase_price"])
+        rental_prices.append(result[i]["rental_price"])
+        quantities.append(result[i]["quantity"])
+        
+
+    return render_template('bookList.html', lenBooks=lenBooks, isbns=isbns, book_names=book_names, course_ids=course_ids, seller_ids=seller_ids, 
+    purchase_prices=purchase_prices, rental_prices=rental_prices, quantities=quantities)   
+
+@app.route('/sortAsc')
+def sortBooks():
+
+    connection = open_connection()
+
+    with connection.cursor() as cursor:
+        
+        cursor.execute('SELECT * FROM Books SORT BY purchase_price ASC;')
+        result = cursor.fetchall()
+        print(result)
+
+    connection.close()
+
+    lenBooks = len(result)
+    isbns = []
+    book_names = []
+    course_ids = []
+    seller_ids = []
+    purchase_prices = []
+    rental_prices = []
+    quantities = []
+    for i in range(lenBooks):
+        isbns.append(result[i]["isbn"])
+        book_names.append(result[i]["book_name"])
+        course_ids.append(result[i]["course_id"])
+        seller_ids.append(result[i]["seller_id"])
+        purchase_prices.append(result[i]["purchase_price"])
+        rental_prices.append(result[i]["rental_price"])
+        quantities.append(result[i]["quantity"])
+        
+
+    return render_template('bookList.html', lenBooks=lenBooks, isbns=isbns, book_names=book_names, course_ids=course_ids, seller_ids=seller_ids, 
+    purchase_prices=purchase_prices, rental_prices=rental_prices, quantities=quantities)
     
 @app.route('/showBookList')
 def showBookList():
