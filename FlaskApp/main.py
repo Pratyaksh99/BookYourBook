@@ -124,7 +124,7 @@ def sortBooks():
 
     with connection.cursor() as cursor:
         
-        cursor.execute('SELECT * FROM Books SORT BY purchase_price DESC;')
+        cursor.execute('SELECT * FROM Books ORDER BY purchase_price DESC;')
         result = cursor.fetchall()
         print(result)
 
@@ -158,7 +158,7 @@ def sortBooks():
 
     with connection.cursor() as cursor:
         
-        cursor.execute('SELECT * FROM Books SORT BY purchase_price ASC;')
+        cursor.execute('SELECT * FROM Books ORDER BY purchase_price ASC;')
         result = cursor.fetchall()
         print(result)
 
