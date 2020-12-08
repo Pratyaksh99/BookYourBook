@@ -83,7 +83,6 @@ def do_signUp():
 @app.route('/signIn',methods=['POST', 'GET'])
 def signIn(errorMessage="", requestTrigger=True):
  
-    # read the posted values from the UI
     if (request.method == 'POST') and requestTrigger:
         return do_signIn()
     return render_template('signin.html', errorMessage=errorMessage) 
@@ -97,7 +96,7 @@ def do_signIn():
     connection = open_connection()
 
     with connection.cursor() as cursor:
-        # Create a new record
+    
         sql = 'SELECT user_id, user_password FROM Users WHERE user_email=%s;'
         cursor.execute(sql, email)
         result = cursor.fetchone()
@@ -458,7 +457,7 @@ def do_rent():
                 sql = 'INSERT INTO Rentals (isbn, buyer_id, seller_id, rented_period, rental_price) VALUES (%s, %s, %s, %s, %s);'
                 cursor.execute(sql, (isbn, global_userId, main_result['seller_id'], rented_duration, main_result['rental_price']))
 
-                # Delete from the Books Table
+                # Set qunatity to zero when all books bought or rented
                 sql = 'UPDATE Books SET quantity = 0 WHERE isbn=%s;'
                 cursor.execute(sql, isbn)
 
