@@ -289,6 +289,34 @@ def showBookList():
     purchase_prices=purchase_prices, rental_prices=rental_prices, quantities=quantities, lenCourses=lenCourses, courseNames=courseNames, avgPP=avgPP, avgRP=avgRP)
     
 
+@app.route('/contactSellers')
+def contactSellers():
+
+    connection = open_connection()
+
+    with connection.cursor() as cursor:
+        
+        cursor.execute('SELECT user_name, user_email, book_name FROM Users JOIN Sellers ON (Users.user_id = Sellers.seller_id) JOIN Books on (Sellers.seller_id = Books.seller_id);')
+        result = cursor.fetchall()
+        print(result)
+
+    connection.close()
+
+    lenUsers = len(result)
+    userNames = []
+    userEmails = []
+    userBooks = []
+
+    for i in range(lenUsers):
+
+        userNames.append(result[i]["user_name"])
+        userEmails.append(result[i]["user_email"])
+        userBooks.append(result[i]["book_name"])
+
+
+    return render_template('contactList.html', userNames=userNames, userEmails=userEmails, userBooks=userBooks)
+    
+
 @app.route('/buy',methods=['POST', 'GET'])
 def buy(errorMessage="", requestTrigger=True):
  
