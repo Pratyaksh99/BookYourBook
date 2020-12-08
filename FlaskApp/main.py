@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 import pymysql
-from datetime import datetime
+from datetime import date
+
 
 app = Flask(__name__)
 
@@ -391,6 +392,14 @@ def do_rent():
 
     isbn = request.form['inputIsbn']
     endDate = request.form['inputEndDate']
+    date_format = endDate.split("-")
+    
+    today = date.today() 
+    year = int(date_format[0])
+    month = int(date_format[1])
+    day = int(date_format[2])
+
+    rented_duration = date(year,month,day)
 
     try:
 
@@ -421,7 +430,7 @@ def do_rent():
 
                 # Insert into Rentals Table
                 sql = 'INSERT INTO Rentals (isbn, buyer_id, seller_id, rented_period, rental_price) VALUES (%s, %s, %s, %s, %s);'
-                cursor.execute(sql, (isbn, global_userId, main_result['seller_id'], DATE, main_result['rental_price']))
+                cursor.execute(sql, (isbn, global_userId, main_result['seller_id'], rented_duration, main_result['rental_price']))
                 
                 # Update the quantity in the Books Table
                 sql = 'UPDATE Books SET quantity = quantity - 1 WHERE isbn=%s'
@@ -445,7 +454,7 @@ def do_rent():
 
                 # Insert into Rentals Table
                 sql = 'INSERT INTO Rentals (isbn, buyer_id, seller_id, rented_period, rental_price) VALUES (%s, %s, %s, %s, %s);'
-                cursor.execute(sql, (isbn, global_userId, main_result['seller_id'], DATE, main_result['rental_price']))
+                cursor.execute(sql, (isbn, global_userId, main_result['seller_id'], rented_duration, main_result['rental_price']))
 
                 # Delete from the Books Table
                 sql = 'UPDATE Books SET quantity = 0 WHERE isbn=%s;'
