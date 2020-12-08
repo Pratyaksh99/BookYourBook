@@ -224,7 +224,7 @@ def showBookList():
 
     with connection.cursor() as cursor:
         
-        cursor.execute('SELECT * FROM Books;')
+        cursor.execute('SELECT * FROM Books ORDER BY isbn ASC;')
         result = cursor.fetchall()
         cursor.execute('SELECT course_id, AVG(purchase_price) as avgPP, AVG(rental_price) as avgRP FROM Books GROUP BY course_id;')
         result_avgs = cursor.fetchall()
@@ -287,7 +287,30 @@ def showBookList():
 
     return render_template('bookList.html', lenBooks=lenBooks, isbns=isbns, book_names=book_names, course_ids=course_ids, seller_ids=seller_ids, 
     purchase_prices=purchase_prices, rental_prices=rental_prices, quantities=quantities, lenCourses=lenCourses, courseNames=courseNames, avgPP=avgPP, avgRP=avgRP)
-    
+
+@app.route('/bestSellers')
+def bestSellers():
+
+    connection = open_connection()
+
+    with connection.cursor() as cursor:
+        
+        cursor.execute('SELECT book_name, COUNT(*) as cnt FROM Books JOIN Purchases ON (Books.isbn = Purchases.isbn) GROUP BY Books.isbn')
+        result = cursor.fetchall()
+        print(result)
+
+    connection.close()
+
+    lenBooks = len(result)
+    bookNames = []
+    bookCounts = []
+
+    for i in range(lenBooks):
+
+        bookNames.append(result[i]["book_name"])
+        bookCounts.append(result[i]["cnt"])
+        
+    return render_template('bestSellers.html', bookNames=bookNames, bookCounts=bookCounts, lenBooks=lenBooks)  
 
 @app.route('/contactSellers')
 def contactSellers():
@@ -314,7 +337,7 @@ def contactSellers():
         userBooks.append(result[i]["book_name"])
 
 
-    return render_template('contactList.html', userNames=userNames, userEmails=userEmails, userBooks=userBooks)
+    return render_template('contactList.html', userNames=userNames, userEmails=userEmails, userBooks=userBooks, lenUsers=lenUsers)
     
 
 @app.route('/buy',methods=['POST', 'GET'])
