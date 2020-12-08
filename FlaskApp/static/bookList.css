@@ -1,11 +1,9 @@
 * {
-    overflow-x: hidden;
-    padding: 0px !important;
-    margin: 0px !important;
+    overflow-x: hidden; 
   }
   .v6_2 {
     width: 100%;
-    height: 1024px;
+    height: auto;
     background: rgba(255,255,255,1);
     opacity: 1;
     position: relative;
@@ -13,24 +11,21 @@
     left: 0px;
     overflow: hidden;
   }
-  .v8_0 {
-    width: 219px;
+  .book_list_back_row {
     height: 76px;
     background: rgba(255,255,255,1);
     opacity: 1;
-    position: absolute;
+    position: relative;
     top: 55px;
     left: 70px;
     overflow: hidden;
   }
-  .v6_4 {
+  .book_list_back_bubble {
     width: 219px;
     height: 76px;
-    background: rgba(101,188,151,1);
+    background: rgba(64,154,116,1);
     opacity: 1;
-    position: relative;
-    top: 0px;
-    left: 0px;
+    position: absolute;
     border-top-left-radius: 59px;
     border-top-right-radius: 59px;
     border-bottom-left-radius: 59px;
@@ -52,9 +47,9 @@
   .book_list_title {
     width: 100%;
     color: rgba(101,188,151,1);
-    position: absolute;
-    top: 154px;
-    left: 202px;
+    position: relative;
+    top: 50px;
+    left: 200px;
     font-family: Roboto;
     font-weight: Bold;
     font-size: 144px;
@@ -68,7 +63,7 @@
     opacity: 1;
     position: relative;
     top: 0px;
-    left: 150px;
+    left: 185px;
     overflow: hidden;
   }
   .book_list_title_header {
@@ -126,7 +121,7 @@
     overflow: hidden;
   }
   .book_list_header_text {
-    width: 117px;
+    width: 250px;
     color: rgba(96,96,96,1);
     position: absolute;
     top: 36px;
@@ -232,25 +227,68 @@
     overflow: hidden;
   }
   .book_list_table {
-    position: absolute;
-    top: 600px;
+    position: relative;
     width: 100%;
+  }
+  .book_list_buy_rent_sort {
+    height: auto;
+    width: auto;
+    background: rgba(255,255,255,1);
+    opacity: 1;
+    position: relative;
+    top: 20px;
+    left: 50px;
+    overflow: hidden;
+  }
+  .book_list_buy_form {
+    height: 300px;
+    width: 400px;
+    background: rgba(255,255,255,1);
+    opacity: 1;
+    position: relative;
+    top: 55px;
+    left: 50px;
+    overflow: hidden;
+    float:left;
+  }
+  .book_list_sort_buttons {
+    height: 300px;
+    width: 400px;
+    background: rgba(255,255,255,1);
+    opacity: 1;
+    position: relative;
+    top: 55px;
+    left: 50px;
+    overflow: hidden;
+    float:left;
+  }
+  .book_list_rent_form {
+    height: 300px;
+    width: 400px;
+    background: rgba(255,255,255,1);
+    opacity: 1;
+    position: relative;
+    top: 55px;
+    left: 50px;
+    overflow: hidden;
+    float:left;
   }
   .book_list_buy_bubble {
     width: 219px;
     height: 76px;
     background: rgba(64,154,116,1);
     opacity: 1;
-    position: absolute;
-    top: 337px;
-    left: 110px;
+    position: relative;
+    top: 0px;
+    left: 50%;
+    transform: translateX(-50%);
     border-top-left-radius: 59px;
     border-top-right-radius: 59px;
     border-bottom-left-radius: 59px;
     border-bottom-right-radius: 59px;
     overflow: hidden;
   }
-  .book_list_buy_text {
+  .book_list_button_text {
     width: 60px;
     color: rgba(255,255,255,1);
     position: relative;
@@ -258,48 +296,41 @@
     font-weight: Regular;
     font-size: 36px;
     opacity: 1;
-    text-align: left;
+    text-align: center;
   }
   .book_list_rent_bubble {
     width: 219px;
     height: 76px;
     background: rgba(64,154,116,1);
     opacity: 1;
-    position: absolute;
-    top: 337px;
-    left: 1127px;
+    position: relative;
+    top: 0px;
+    left: 50%;
+    transform: translateX(-50%);
     border-top-left-radius: 59px;
     border-top-right-radius: 59px;
     border-bottom-left-radius: 59px;
     border-bottom-right-radius: 59px;
     overflow: hidden;
   }
-  .book_list_rent_text {
-    width: 58px;
-    color: rgba(255,255,255,1);
-    position: relative;
-    font-family: Roboto;
-    font-weight: Regular;
-    font-size: 36px;
-    opacity: 1;
-    text-align: left;
-  }
   .book_list_buy_input_box {
     width: 361px;
     height: 216px;
     opacity: 1;
     position: absolute;
-    top: 450px;
-    left: 100px;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
     overflow: hidden;
   }
   .book_list_rent_input_box {
     width: 361px;
-    height: 216px;
+    height: 416px;
     opacity: 1;
     position: absolute;
-    top: 450px;
-    left: 1050px;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
     overflow: hidden;
   }
   .book_list_input_row {
@@ -314,7 +345,6 @@
   }
   .book_list_input_text {
     width: 358px;
-    color: url("../images/v13_11.png");
     position: static;
     top: 0px;
     left: 20px;
@@ -323,4 +353,111 @@
     font-size: 24px;
     opacity: 1;
     text-align: left;
+  }
+  .book_list_sort_ascending {
+    width: 300px;
+    height: 76px;
+    background: rgba(64,154,116,1);
+    opacity: 1;
+    position: relative;
+    border-top-left-radius: 59px;
+    border-top-right-radius: 59px;
+    border-bottom-left-radius: 59px;
+    border-bottom-right-radius: 59px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .book_list_sort_descending {
+    width: 300px;
+    height: 76px;
+    background: rgba(64,154,116,1);
+    opacity: 1;
+    position: relative;
+    border-top-left-radius: 59px;
+    border-top-right-radius: 59px;
+    border-bottom-left-radius: 59px;
+    border-bottom-right-radius: 59px;
+    overflow: hidden;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .book_list_average_table {
+    position: relative;
+    width: 100%;
+  }
+  .book_list_average_headings {
+    width: 100%;
+    height: 72px;
+    background: rgba(255,255,255,1);
+    opacity: 1;
+    position: relative;
+    top: 0px;
+    left: 185px;
+    overflow: hidden;
+  }
+  .book_list_average_course_header {
+    width: 238px;
+    height: 72px;
+    opacity: 1;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    overflow: hidden;
+  }
+  .book_list_average_purchase_header {
+    width: 238px;
+    height: 72px;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    left: 238px;
+    overflow: hidden;
+  }
+  .book_list_average_rent_header {
+    width: 189px;
+    height: 72px;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    left: 476px;
+    overflow: hidden;
+  }
+  .book_list_average_row {
+    width: 100%;
+    height: 72px;
+    background: rgba(228,228,228,1);
+    opacity: 1;
+    position: relative;
+    left: 100px;
+    overflow: hidden;
+  }
+  .book_list_average_row_course {
+    width: 238px;
+    height: 72px;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    overflow: hidden;
+  }
+  .book_list_average_row_purchase {
+    width: 238px;
+    height: 72px;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    left: 238px;
+    overflow: hidden;
+  }
+  .book_list_average_row_rent {
+    width: 189px;
+    height: 72px;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    left: 476px;
+    overflow: hidden;
   }

@@ -166,7 +166,7 @@ def sortAsc():
 
 
     return render_template('bookList.html', lenBooks=lenBooks, isbns=isbns, book_names=book_names, course_ids=course_ids, seller_ids=seller_ids, 
-    purchase_prices=purchase_prices, rental_prices=rental_prices, quantities=quantities, courseNames=courseNames, avgPP=avgPP, avgRP=avgRP)
+    purchase_prices=purchase_prices, rental_prices=rental_prices, quantities=quantities, lenCourses=lenCourses, courseNames=courseNames, avgPP=avgPP, avgRP=avgRP)
 
 @app.route('/sortDesc')
 def sortDesc():
@@ -216,7 +216,7 @@ def sortDesc():
 
 
     return render_template('bookList.html', lenBooks=lenBooks, isbns=isbns, book_names=book_names, course_ids=course_ids, seller_ids=seller_ids, 
-    purchase_prices=purchase_prices, rental_prices=rental_prices, quantities=quantities, courseNames=courseNames, avgPP=avgPP, avgRP=avgRP)
+    purchase_prices=purchase_prices, rental_prices=rental_prices, quantities=quantities, lenCourses=lenCourses, courseNames=courseNames, avgPP=avgPP, avgRP=avgRP)
     
 @app.route('/showBookList')
 def showBookList():
@@ -234,7 +234,7 @@ def showBookList():
 
     connection.close()
 
-    #Sample result list
+    # Sample result list
     # result = [{
     #     "isbn": 123,
     #     "book_name": "Book1",
@@ -242,6 +242,7 @@ def showBookList():
     #     "seller_id": "Seller1",
     #     "purchase_price": 20,
     #     "rental_price": 10,
+    #     "quantity": 2,
     #     },
     #     {
     #     "isbn": 444,
@@ -250,7 +251,8 @@ def showBookList():
     #     "seller_id": "Seller2",
     #     "purchase_price": 5,
     #     "rental_price": 10,
-    #     }
+    #     "quantity": 3,
+    #     },
     # ]
 
     lenBooks = len(result)
@@ -285,7 +287,7 @@ def showBookList():
 
 
     return render_template('bookList.html', lenBooks=lenBooks, isbns=isbns, book_names=book_names, course_ids=course_ids, seller_ids=seller_ids, 
-    purchase_prices=purchase_prices, rental_prices=rental_prices, quantities=quantities, courseNames=courseNames, avgPP=avgPP, avgRP=avgRP)
+    purchase_prices=purchase_prices, rental_prices=rental_prices, quantities=quantities, lenCourses=lenCourses, courseNames=courseNames, avgPP=avgPP, avgRP=avgRP)
     
 
 @app.route('/buy',methods=['POST', 'GET'])

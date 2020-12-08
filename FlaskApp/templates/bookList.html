@@ -8,15 +8,59 @@
 	<body>
 		<div class="v6_2">
 
-			<div class="v8_0">
-				<div class="v6_4"></div>
-				<span class="v6_6">
-					<a href="/showHomepageSignedIn">Back</a>
-				</span>
+			<div class="book_list_back_row">
+				<button class="book_list_back_bubble">
+					<span class="book_list_button_text">
+						<a href="/showHomepageSignedIn">Back</a>
+					</span>
+				</button>
             </div>
             
             <span class="book_list_title">Book Your Book</span>
 			
+			<div class="book_list_buy_rent_sort">
+				<form action="/buy" method="POST" class="book_list_buy_form">
+					<div class="book_list_buy_input_box">
+						<div class="book_list_input_row">
+							<span class="book_list_input_text">ISBN:</span>
+							<input type="number" name="inputIsbn" id="inputIsbn" class="form-buy" placeholder="ISBN" required autofocus>
+						</div>
+					</div>
+					<button type="submit" id="btnBuy" class="book_list_buy_bubble">
+						<span class="book_list_button_text">Buy</span>
+					</button>
+				</form>
+
+				<div class="book_list_sort_buttons">
+					<button class="book_list_sort_ascending">
+						<span class="book_list_button_text">
+							<a href="/sortAsc">Sort Ascending</a>
+						</span>
+					</button>
+					<button class="book_list_sort_descending">
+						<span class="book_list_button_text">
+							<a href="/sortDesc">Sort Descending</a>
+						</span>
+					</button>
+				</div>
+
+				<form action="/rent" method="POST" class="book_list_rent_form">
+					<div class="book_list_rent_input_box">
+						<div class="book_list_input_row">
+							<span class="book_list_input_text">ISBN:</span>
+							<input type="number" name="inputIsbn" id="inputIsbn" class="form-rent" placeholder="ISBN" required autofocus>
+						</div>
+						<div class="book_list_input_row">
+							<span class="book_list_input_text">Rental end date:</span>
+							<input type="date" name="inputEndDate" id="inputEndDate" class="form-rent" placeholder="Date" required autofocus>
+						</div>
+					</div>
+					<button type="submit" id="btnRent" class="book_list_rent_bubble">
+						<span class="book_list_button_text">Rent</span>
+					</button>
+				</form>
+			</div>
+
 			<div class="book_list_table">
 				<div class="book_list_headings">
 					<div class="book_list_title_header">
@@ -75,33 +119,39 @@
 			
 			</div>
 
-			<form action="/buy" method="POST">
-				<div class="book_list_buy_input_box">
-					<div class="book_list_input_row">
-						<span class="book_list_input_text">ISBN:</span>
-						<input type="number" name="inputIsbn" id="inputIsbn" class="form-buy" placeholder="ISBN" required autofocus>
+			<div class="book_list_average_table">
+				<div class="book_list_average_headings">
+					<div class="book_list_average_course_header">
+						<span class="book_list_header_text">Course</span>
+					</div>
+					<div class="book_list_average_purchase_header">
+						<span class="book_list_header_text">Average Purchase Price</span>
+					</div>
+					<div class="book_list_average_rent_header">
+						<span class="book_list_header_text">Average Rent Price</span>
 					</div>
 				</div>
-				<button type="submit" id="btnBuy" class="book_list_buy_bubble">
-					<span class="book_list_buy_text">Buy</span>
-				</button>
-			</form>
 
-			<form action="/rent" method="POST">
-				<div class="book_list_rent_input_box">
-					<div class="book_list_input_row">
-						<span class="book_list_input_text">ISBN:</span>
-						<input type="number" name="inputIsbn" id="inputIsbn" class="form-rent" placeholder="ISBN" required autofocus>
-					</div>
-					<div class="book_list_input_row">
-						<span class="book_list_input_text">Rental end date:</span>
-						<input type="date" name="inputEndDate" id="inputEndDate" class="form-rent" placeholder="Date" required autofocus>
-					</div>
-				</div>
-				<button type="submit" id="btnRent" class="book_list_rent_bubble">
-					<span class="book_list_rent_text">Rent</span>
-				</button>
-			</form>
+				<ol> 
+					{%for i in range(0, lenCourses)%}
+						<li>
+							<div class="book_list_average_row">
+								<div class="book_list_average_row_course">
+									<span class="book_list_row_text">{{courseNames[i]}}</span>
+								</div>
+								<div class="book_list_average_row_purchase">
+									<span class="book_list_row_text">${{avgPP[i]}}</span>
+								</div>
+								<div class="book_list_average_row_rent">
+									<span class="book_list_row_text">${{avgRP[i]}}</span>
+								</div>
+							</div>
+						</li> 
+					{%endfor%}
+					  
+				</ol> 
+			
+			</div>
             
 		</div>
 	</body>
