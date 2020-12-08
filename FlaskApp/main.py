@@ -359,6 +359,7 @@ def do_buy():
         with connection.cursor() as cursor:
 
             # Check if book exists
+            cursor.execute('SET SESSION TRANSACTION ISOLATION LEVEL SERIALIZABLE')
             sql = 'SELECT * FROM Books WHERE isbn=%s;'
             cursor.execute(sql, isbn)
             main_result = cursor.fetchone()
@@ -460,6 +461,7 @@ def do_rent():
         with connection.cursor() as cursor:
 
             # Check if book exists
+            cursor.execute('SET SESSION TRANSACTION ISOLATION LEVEL SERIALIZABLE')
             sql = 'SELECT * FROM Books WHERE isbn=%s;'
             cursor.execute(sql, isbn)
             main_result = cursor.fetchone()
@@ -556,6 +558,7 @@ def do_sell():
 
         with connection.cursor() as cursor:
 
+            cursor.execute('SET SESSION TRANSACTION ISOLATION LEVEL SERIALIZABLE')
             sql = 'SELECT * FROM Books WHERE isbn=%s;'
             cursor.execute(sql, isbn)
             main_result = cursor.fetchone()
