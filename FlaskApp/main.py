@@ -124,9 +124,9 @@ def sortAsc():
 
     with connection.cursor() as cursor:
         
-        cursor.execute('SELECT * FROM Books ORDER BY purchase_price ASC;')
+        cursor.execute('SELECT * FROM Books WHERE quantity > 0 ORDER BY purchase_price ASC;')
         result = cursor.fetchall()
-        cursor.execute('SELECT course_id, AVG(purchase_price) as avgPP, AVG(rental_price) as avgRP FROM Books GROUP BY course_id;')
+        cursor.execute('SELECT course_id, AVG(purchase_price) as avgPP, AVG(rental_price) as avgRP FROM Books GROUP BY course_id HAVING quantity > 0;')
         result_avgs = cursor.fetchall()
         print(result)
         print(result_avgs)
@@ -174,9 +174,9 @@ def sortDesc():
 
     with connection.cursor() as cursor:
         
-        cursor.execute('SELECT * FROM Books ORDER BY purchase_price DESC;')
+        cursor.execute('SELECT * FROM Books WHERE quantity > 0 ORDER BY purchase_price DESC;')
         result = cursor.fetchall()
-        cursor.execute('SELECT course_id, AVG(purchase_price) as avgPP, AVG(rental_price) as avgRP FROM Books GROUP BY course_id;')
+        cursor.execute('SELECT course_id, AVG(purchase_price) as avgPP, AVG(rental_price) as avgRP FROM Books GROUP BY course_id HAVING quantity > 0;')
         result_avgs = cursor.fetchall()
         print(result)
         print(result_avgs)
@@ -224,9 +224,9 @@ def showBookList():
 
     with connection.cursor() as cursor:
         
-        cursor.execute('SELECT * FROM Books ORDER BY isbn ASC;')
+        cursor.execute('SELECT * FROM Books WHERE quantity > 0 ORDER BY isbn ASC;')
         result = cursor.fetchall()
-        cursor.execute('SELECT course_id, AVG(purchase_price) as avgPP, AVG(rental_price) as avgRP FROM Books GROUP BY course_id;')
+        cursor.execute('SELECT course_id, AVG(purchase_price) as avgPP, AVG(rental_price) as avgRP FROM Books GROUP BY course_id HAVING quantity > 0;')
         result_avgs = cursor.fetchall()
         print(result)
         print(result_avgs)
@@ -295,7 +295,7 @@ def bestSellers():
 
     with connection.cursor() as cursor:
         
-        cursor.execute('SELECT book_name, COUNT(*) as cnt FROM Books JOIN Purchases ON (Books.isbn = Purchases.isbn) GROUP BY Books.isbn')
+        cursor.execute('SELECT book_name, COUNT(*) as cnt FROM Books JOIN Purchases ON (Books.isbn = Purchases.isbn) GROUP BY Books.isbn ORDER BY cnt DESC')
         result = cursor.fetchall()
         print(result)
 
