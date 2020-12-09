@@ -126,7 +126,7 @@ def sortAsc():
         
         cursor.execute('SELECT * FROM Books WHERE quantity > 0 ORDER BY purchase_price ASC;')
         result = cursor.fetchall()
-        cursor.execute('SELECT course_id, AVG(purchase_price) as avgPP, AVG(rental_price) as avgRP FROM Books GROUP BY course_id HAVING quantity > 0;')
+        cursor.execute('SELECT course_id, AVG(purchase_price) as avgPP, AVG(rental_price) as avgRP FROM Books WHERE quantity > 0 GROUP BY course_id;')
         result_avgs = cursor.fetchall()
         print(result)
         print(result_avgs)
@@ -176,7 +176,7 @@ def sortDesc():
         
         cursor.execute('SELECT * FROM Books WHERE quantity > 0 ORDER BY purchase_price DESC;')
         result = cursor.fetchall()
-        cursor.execute('SELECT course_id, AVG(purchase_price) as avgPP, AVG(rental_price) as avgRP FROM Books GROUP BY course_id HAVING quantity > 0;')
+        cursor.execute('SELECT course_id, AVG(purchase_price) as avgPP, AVG(rental_price) as avgRP FROM Books WHERE quantity > 0 GROUP BY course_id;')
         result_avgs = cursor.fetchall()
         print(result)
         print(result_avgs)
@@ -226,7 +226,7 @@ def showBookList():
         
         cursor.execute('SELECT * FROM Books WHERE quantity > 0 ORDER BY isbn ASC;')
         result = cursor.fetchall()
-        cursor.execute('SELECT course_id, AVG(purchase_price) as avgPP, AVG(rental_price) as avgRP FROM Books GROUP BY course_id HAVING quantity > 0;')
+        cursor.execute('SELECT course_id, AVG(purchase_price) as avgPP, AVG(rental_price) as avgRP FROM Books WHERE quantity > 0 GROUP BY course_id;')
         result_avgs = cursor.fetchall()
         print(result)
         print(result_avgs)
