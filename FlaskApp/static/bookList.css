@@ -1,7 +1,7 @@
 * {
     overflow-x: hidden; 
   }
-  .v6_2 {
+  .book_list_page {
     width: 100%;
     height: auto;
     background: rgba(255,255,255,1);
@@ -31,18 +31,6 @@
     border-bottom-left-radius: 59px;
     border-bottom-right-radius: 59px;
     overflow: hidden;
-  }
-  .v6_6 {
-    width: 80px;
-    color: rgba(255,255,255,1);
-    position: absolute;
-    top: 16px;
-    left: 70px;
-    font-family: Roboto;
-    font-weight: Regular;
-    font-size: 36px;
-    opacity: 1;
-    text-align: left;
   }
   .book_list_title {
     width: 100%;

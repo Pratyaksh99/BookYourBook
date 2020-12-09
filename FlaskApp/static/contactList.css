@@ -1,0 +1,161 @@
+* {
+    overflow-x: hidden; 
+  }
+  .contact_list_page {
+    width: 100%;
+    height: auto;
+    background: rgba(255,255,255,1);
+    opacity: 1;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    overflow: hidden;
+  }
+  .contact_list_back_row {
+    height: 76px;
+    background: rgba(255,255,255,1);
+    opacity: 1;
+    position: relative;
+    top: 55px;
+    left: 70px;
+    overflow: hidden;
+  }
+  .contact_list_back_bubble {
+    width: 219px;
+    height: 76px;
+    background: rgba(64,154,116,1);
+    opacity: 1;
+    position: absolute;
+    border-top-left-radius: 59px;
+    border-top-right-radius: 59px;
+    border-bottom-left-radius: 59px;
+    border-bottom-right-radius: 59px;
+    overflow: hidden;
+  }
+  .contact_list_button_text {
+    width: 60px;
+    color: rgba(255,255,255,1);
+    position: relative;
+    font-family: Roboto;
+    font-weight: Regular;
+    font-size: 36px;
+    opacity: 1;
+    text-align: center;
+  }
+  .contact_list_title {
+    width: 100%;
+    color: rgba(101,188,151,1);
+    position: relative;
+    top: 50px;
+    left: 200px;
+    font-family: Roboto;
+    font-weight: Bold;
+    font-size: 144px;
+    opacity: 1;
+    text-align: left;
+  }
+
+  .contact_list_table {
+    position: relative;
+    width: 100%;
+    height: auto;
+    margin-top: 50px;
+  }
+  .contact_list_headings {
+    width: 100%;
+    height: 72px;
+    background: rgba(255,255,255,1);
+    opacity: 1;
+    position: relative;
+    top: 0px;
+    left: 185px;
+    overflow: hidden;
+  }
+  .contact_list_name_header {
+    width: 238px;
+    height: 72px;
+    opacity: 1;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    overflow: hidden;
+  }
+  .contact_list_email_header {
+    width: 238px;
+    height: 72px;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    left: 238px;
+    overflow: hidden;
+  }
+  .contact_list_book_header {
+    width: 189px;
+    height: 72px;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    left: 476px;
+    overflow: hidden;
+  }
+  .contact_list_row {
+    width: 100%;
+    height: 72px;
+    background: rgba(228,228,228,1);
+    opacity: 1;
+    position: relative;
+    left: 100px;
+    overflow: hidden;
+  }
+  .contact_list_row_name {
+    width: 238px;
+    height: 72px;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    overflow: hidden;
+  }
+  .contact_list_row_email {
+    width: 238px;
+    height: 72px;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    left: 238px;
+    overflow: hidden;
+  }
+  .contact_list_row_book {
+    width: 189px;
+    height: 72px;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    left: 476px;
+    overflow: hidden;
+  }
+  .contact_list_header_text {
+    width: 250px;
+    color: rgba(96,96,96,1);
+    position: absolute;
+    top: 36px;
+    left: 0px;
+    font-family: Roboto;
+    font-weight: Regular;
+    font-size: 20px;
+    opacity: 1;
+    text-align: left;
+  }
+  .contact_list_row_text {
+    width: 198px;
+    color: rgba(0,0,0,1);
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 40px;
+    font-family: Roboto;
+    font-weight: Regular;
+    font-size: 24px;
+    opacity: 1;
+    text-align: left;
+  }

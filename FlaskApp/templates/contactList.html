@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
+		<link href="../static/contactList.css" rel="stylesheet" />
+		<title>Document</title>
+	</head>
+	<body>
+		<div class="contact_list_page">
+
+			<div class="contact_list_back_row">
+				<button class="contact_list_back_bubble">
+					<span class="contact_list_button_text">
+						<a href="/showHomepageSignedIn">Back</a>
+					</span>
+				</button>
+            </div>
+            
+            <span class="contact_list_title">Book Your Book</span>
+
+			<div class="contact_list_table">
+				<div class="contact_list_headings">
+					<div class="contact_list_name_header">
+						<span class="contact_list_header_text">Name</span>
+					</div>
+					<div class="contact_list_email_header">
+						<span class="contact_list_header_text">Email</span>
+					</div>
+					<div class="contact_list_book_header">
+						<span class="contact_list_header_text">Book</span>
+					</div>
+				</div>
+
+				<ol> 
+					{%for i in range(0, lenUsers)%}
+						<li>
+							<div class="contact_list_row">
+								<div class="contact_list_row_name">
+									<span class="contact_list_row_text">{{userNames[i]}}</span>
+								</div>
+								<div class="contact_list_row_email">
+									<span class="contact_list_row_text">{{userEmails[i]}}</span>
+								</div>
+								<div class="contact_list_row_book">
+									<span class="contact_list_row_text">{{userBooks[i]}}</span>
+								</div>
+							</div>
+						</li> 
+					{%endfor%}
+					  
+				</ol> 
+			
+			</div>
+            
+		</div>
+	</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
+		<link href="../static/bestSellers.css" rel="stylesheet" />
+		<title>Document</title>
+	</head>
+	<body>
+		<div class="best_sellers_page">
+
+			<div class="best_sellers_back_row">
+				<button class="best_sellers_back_bubble">
+					<span class="best_sellers_button_text">
+						<a href="/showHomepageSignedIn">Back</a>
+					</span>
+				</button>
+            </div>
+            
+            <span class="best_sellers_title">Book Your Book</span>
+
+			<div class="best_sellers_table">
+				<div class="best_sellers_headings">
+					<div class="best_sellers_book_header">
+						<span class="best_sellers_header_text">Book</span>
+					</div>
+					<div class="best_sellers_count_header">
+						<span class="best_sellers_header_text">Count</span>
+					</div>
+				</div>
+
+				<ol> 
+					{%for i in range(0, lenBooks)%}
+						<li>
+							<div class="best_sellers_row">
+								<div class="best_sellers_row_book">
+									<span class="best_sellers_row_text">{{bookNames[i]}}</span>
+								</div>
+								<div class="best_sellers_row_count">
+									<span class="best_sellers_row_text">{{bookCounts[i]}}</span>
+								</div>
+							</div>
+						</li> 
+					{%endfor%}
+					  
+				</ol> 
+			
+			</div>
+            
+		</div>
+	</body>
+</html>
